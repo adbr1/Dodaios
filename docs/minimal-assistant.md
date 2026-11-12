@@ -108,8 +108,9 @@ comparison remains a Mac validation step; PNG/ICNS checks are not a substitute.
 - Icon safe-area checks, changed Python helper lint, documentation checks,
   shell syntax and `git diff --check`: passed. The server's existing unsorted
   router import block remains an `I001` lint finding, also reproduced on main.
-- Native macOS build: refused on Linux as designed; packaging dry run passed.
-  Dock, Finder and Cmd-Tab optical comparison is therefore **not validated**.
+- Native macOS builds: Apple Silicon and Intel installers passed on GitHub's
+  macOS runners (see the run below), including frozen-bundle and DMG validation.
+  Dock, Finder and Cmd-Tab optical comparison is still **not validated**.
 - Desktop boot-budget measurement: **not validated**. The isolated desktop
   harness did not reach its anchor within 120 seconds in this Linux environment.
   The focused API tests above do not establish a working native desktop boot.
@@ -134,10 +135,29 @@ gh workflow run desktop-installers.yml --repo OWNER/REPOSITORY \
 
 The workflow uploads `installer-macos-arm64` and `installer-macos-x64` artifacts
 containing the DMGs. A manual branch build is not published as a release and is
-not Apple-notarized. The user has authorized committing and pushing this build branch. Automatic fork
-creation is currently blocked by the GitHub integration (HTTP 403, resource not
-accessible by integration). Pushing and running the remote build require the URL
-of a fork the user has created. No remote branch or DMG has been produced yet.
+not Apple-notarized.
+
+The authorized build branch is now pushed to `adbr1/Dodaios`. On this new fork,
+GitHub initially did not register the inherited manual workflows. The dedicated
+`minimal-macos-build.yml` workflow registers through a branch-scoped push trigger
+and runs the same native packaging script on Apple Silicon and Intel runners.
+It uploads `Dodaios-macOS-arm64` and `Dodaios-macOS-x64`, each containing a DMG
+and SHA-256 checksum. It does not publish a release or modify `main`.
+
+The native build of source commit `b56449044789d7131112f894d034d1ea55afedb6`
+is tracked at <https://github.com/adbr1/Dodaios/actions/runs/43140875764>.
+Both native jobs passed the icon tests, packaging, frozen-bundle validation
+and `hdiutil verify`, and uploaded their installers and SHA-256 checksums:
+
+- [Apple Silicon artifact](https://github.com/adbr1/Dodaios/actions/runs/43140875764/artifacts/13910176114)
+- [Intel artifact](https://github.com/adbr1/Dodaios/actions/runs/43140875764/artifacts/13909813965)
+
+The artifacts are retained for 14 days. Downloading their ZIPs into this Linux
+environment was blocked by its access to GitHub's artifact storage (HTTP 403).
+Checksums were calculated on the native runners; they were not independently
+rechecked here. Downloads remain available through the GitHub artifact links.
+Both builds use ad-hoc signing and are not Apple-notarized. Finder, Dock and
+Cmd-Tab visual inspection still requires opening the application on a Mac.
 
 
 ### Runtime Dock override
