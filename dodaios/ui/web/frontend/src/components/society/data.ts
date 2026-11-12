@@ -28,8 +28,6 @@ import { translate } from "@/i18n";
 
 import { PALETTE_PRESETS, resolvePalette, type FigureRecipe } from "./figures/figureRecipe";
 import { SAMPLE_ROSTER } from "./mockRoster";
-import { beginRetirement, retirementRunning, retirementStageMounted } from "./world/retireStore";
-import { announceSpawn } from "./world/spawnStore";
 
 /** The create dialog named an agent that already exists. */
 export class AgentNameTaken extends Error {
@@ -377,8 +375,6 @@ const WARM_FRESH_MS = 2_000;
  * switch to the section, before it renders) both are there for its first paint.
  */
 export async function warmSocietyLists(client: QueryClient): Promise<void> {
-  // A refetch mid-ceremony would delete the figure being carried to the mine.
-  if (retirementRunning()) return;
   const rosterQuery = {
     queryKey: ROSTER_QUERY_KEY,
     queryFn: () => fetchSocietyRoster(client.getQueryData<RosterData>(ROSTER_QUERY_KEY)),
@@ -421,9 +417,7 @@ export function useSocietyRoster(enabled = true) {
     enabled,
     select,
     staleTime: 15_000,
-    // A refetch mid-ceremony would delete the figure being carried to the
-    // mine out from under the animation; the commit invalidates instead.
-    refetchInterval: () => (retirementRunning() ? false : 30_000),
+    refetchInterval: 30_000,
   });
 }
 
@@ -541,7 +535,7 @@ export function useCreateSocietyAgent() {
     const created = (await res.json()) as { agent: SocietyAgentRow; created?: boolean };
     if (created.created === false) throw new AgentNameTaken();
     // The island owes this row an entrance: it walks out of the foundry.
-    announceSpawn(created.agent.agent_id);
+
     const agent = rowToAgent(created.agent);
     patchRoster(client, (agents) => [...agents.filter((a) => a.agentId !== agent.agentId), agent]);
     return agent;
@@ -839,21 +833,11 @@ export function useSetAgentPaused() {
   );
 }
 
-/**
- * Retire an agent: `DELETE /api/society/agents/{id}` archives the row, and the
- * island plays the execution (`world/retirement.ts`) before the roster is
- * refreshed and the figure leaves.
- *
- * The order matters. The deletion goes FIRST, so a refusal — the lead cannot
- * be archived, the backend is down — is an error the person sees straight
- * away, instead of a twenty-second ceremony ending in a figure that quietly
- * comes back. The roster query is invalidated only when the body is in the
- * mine; the refetch interval is paused for the same reason.
- */
+/** Archive an agent and refresh its row without a visual ceremony. */
 export function useRetireAgent() {
   const client = useQueryClient();
   return useCallback(
-    async (agent: SocietyAgent, executioner: SocietyAgent | null): Promise<void> => {
+    async (agent: SocietyAgent, _executioner: SocietyAgent | null): Promise<void> => {
       if (agent.tier === "lead") throw new Error("the lead cannot be retired");
       const sample = SAMPLE_ROSTER.includes(agent);
       if (sample) {
@@ -871,27 +855,8 @@ export function useRetireAgent() {
           throw new Error(`retire ${reason}`);
         }
       }
-      // No island on screen (the Agents ledger, the office): there is no
-      // ceremony to wait for, so the row leaves the rail now.
-      if (sample || !retirementStageMounted()) {
-        patchRoster(client, (agents) => agents.filter((a) => a.agentId !== agent.agentId));
-        if (sample) await client.invalidateQueries({ queryKey: ROSTER_QUERY_KEY });
-        return;
-      }
-      const started = beginRetirement({
-        agentId: agent.agentId,
-        name: agent.name,
-        figure: agent.figure,
-        palette: agent.palette,
-        executionerId: executioner?.agentId ?? null,
-        commit: () => {
-          void client.invalidateQueries({ queryKey: ROSTER_QUERY_KEY });
-        },
-      });
-      // Another retirement already has the lead: the row is gone either way,
-      // so the roster is refreshed at once rather than waiting for a ceremony
-      // that will never run for this agent.
-      if (!started) await client.invalidateQueries({ queryKey: ROSTER_QUERY_KEY });
+      patchRoster(client, (agents) => agents.filter((a) => a.agentId !== agent.agentId));
+      if (sample) await client.invalidateQueries({ queryKey: ROSTER_QUERY_KEY });
     },
     [client],
   );

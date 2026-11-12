@@ -117,19 +117,12 @@ it("opens the avatar profile without selecting the chat and leaves name-click na
   expect(onOpen).toHaveBeenCalledWith("research");
 });
 
-it("customizes the agent's look and saves it with the character recipe kept", async () => {
+it("keeps profile and memory available without an appearance editor", () => {
   const { fetcher } = setup();
-  fireEvent.click(screen.getAllByRole("button", { name: "society.profile_card.look" })[0]);
-  // The look is a pet, picked from My Pets.
-  fireEvent.click(await screen.findByRole("button", { name: "cocoa" }));
-  fireEvent.click(screen.getByRole("button", { name: "society.card.save" }));
-  await screen.findByText("society.profile_card.saved");
-  const call = fetcher.mock.calls.find(([url, init]) => String(url) === "/api/society/agents/research" && init?.method === "PATCH");
-  const body = JSON.parse(String(call?.[1]?.body));
-  expect(body.avatar.companion.pet).toBe("cocoa");
-  const { companion: _old, ...recipe } = agent.figure ?? {};
-  expect(body.avatar).toMatchObject(recipe);
-  expect(body.title).toBe("Researcher");
+  expect(screen.queryByRole("tab", { name: "society.profile_card.look" })).toBeNull();
+  expect(screen.getByRole("tab", { name: "society.profile_card.profile" })).toBeTruthy();
+  expect(screen.getByRole("tab", { name: "society.profile_card.memory" })).toBeTruthy();
+  expect(fetcher.mock.calls.some(([, init]) => init?.method === "PATCH")).toBe(false);
 });
 
 it("offers no look tab for the lead, whose mark is the person's pet", () => {

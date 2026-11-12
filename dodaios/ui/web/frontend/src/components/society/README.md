@@ -1,25 +1,19 @@
-# components/society — Agent Society frontend
+# Agent workspace
 
-The Jarvis Agents section. Agents v2 (MASTERPLAN §2.10): one click creates an
-agent (`data.ts` `useQuickCreateAgent`) and opens its one endless chat
-(`chat/AgentChatPanel.tsx`); delegations, waiting messages and routine runs
-render as folded cards there (`chat/ChatActivity.tsx`). Applied identity
-changes update the profile without adding a notice to the chat.
+This directory presents the agent roster, conversations, instructions, memory,
+permissions, tools, browser sessions and routines. Agent identity is a static
+monogram. Creating, configuring, sharing, pausing and archiving agents use the
+existing society APIs.
 
-Folders, as planned in `docs/agent-society/MASTERPLAN.md` (§4, §9):
+The former Verse worlds, arcade, progression, animated companions, wardrobe,
+figure viewers and their assets have been removed. No agent operation waits
+for a spawn, retirement or completion animation.
 
-- `world/` — the isometric retro pixel open-island world (three + @react-three/fiber v8 + drei,
-  orthographic dimetric camera, ~320×180 nearest-filtered render target / `RenderPixelatedPass`),
-  checkpoint places, low-poly pixel-textured walkers, the client-side choreography queue.
-- `card/` — the agent model card: rotating low-poly GLB figure on the left, spec sheet right.
-- `ledger/` — the data-dense board tab (successor of the DepartureBoard) and the declared fallback
-  for no-WebGL, reduced-motion, and headless contexts.
-- `feed/` — society message feed and bounded room transcripts.
+`figures/figureRecipe.ts`, the metadata-only `figureRegistry.ts` and the
+remaining `companion/` schemas are compatibility code. Existing agent rows and
+shared templates carry these fields. Keep them readable until a separate data
+migration can retire that contract; they no longer load geometry or render an
+avatar. The memory graph's independent 3D option is unaffected.
 
-Branding: the world viewport carries its OWN bright video-game art direction (MASTERPLAN §4.3) —
-only the app chrome around the viewport uses the app's theme tokens.
-
-Binding frontend rules: every canvas mounts through `useWebglSurface` (AP-32 context-loss
-recovery + context budget); rAF pauses via IntersectionObserver, never `document.hidden`; the whole
-section is a lazy route chunk; light AND dark mode via theme tokens; one-viewer layout doctrine
-(no page scroll, overflow into drawers); all strings through the hand-formatted locale files.
+All visible copy uses the existing i18n catalogs. Tests cover the roster,
+profile, create dialog, permissions, conversations and static activity labels.

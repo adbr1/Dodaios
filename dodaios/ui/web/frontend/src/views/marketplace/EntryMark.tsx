@@ -11,8 +11,6 @@
 import { useState, type CSSProperties } from "react";
 import { AlertTriangle } from "lucide-react";
 
-import { CompanionMark } from "@/components/society/companion/CompanionMark";
-import { resolveCompanion } from "@/components/society/companion/appearance";
 import { bundledPluginLogo } from "@/lib/pluginLogos";
 import { cn } from "@/lib/utils";
 import { monogram, nameHue, type Entry } from "./model";
@@ -27,7 +25,6 @@ const BOX: Record<MarkSize, string> = {
 const GLYPH: Record<MarkSize, string> = { row: "h-6 w-6", lead: "h-8 w-8", page: "h-9 w-9" };
 const FULL: Record<MarkSize, string> = { row: "h-8 w-8", lead: "h-10 w-10", page: "h-12 w-12" };
 const LETTERS: Record<MarkSize, string> = { row: "text-lg", lead: "text-xl", page: "text-xl" };
-const PET: Record<MarkSize, number> = { row: 36, lead: 48, page: 54 };
 
 const DEFAULT_BRAND_TILE = "#3F3F46";
 /** Bundled marks drawn in white; on the white app-icon surface they invert. */
@@ -60,15 +57,6 @@ export function EntryMark({ entry, size = "row" }: { entry: Entry; size?: MarkSi
     );
   }
 
-  if (entry.kind === "agent") {
-    const appearance = resolveCompanion(entry.agent?.name || entry.name, entry.agent?.avatar?.companion);
-    return (
-      <div className={cn(box, "bg-secondary")}>
-        <CompanionMark appearance={appearance} size={PET[size]} />
-      </div>
-    );
-  }
-
   if (entry.kind === "look" && entry.previewUrl && !failed) {
     return (
       <div className={cn(box, "bg-secondary")}>
@@ -83,7 +71,7 @@ export function EntryMark({ entry, size = "row" }: { entry: Entry; size?: MarkSi
     );
   }
 
-  if (entry.kind === "skill" || entry.kind === "look") {
+  if (entry.kind === "agent" || entry.kind === "skill" || entry.kind === "look") {
     return (
       <div
         className={cn(box, TINT, "font-display font-semibold tracking-tight", LETTERS[size])}

@@ -594,7 +594,6 @@ class WebServer:
         from .skills_routes import router as skills_router
         from .socials_routes import router as socials_router
         from .society_browser_routes import router as society_browser_router
-        from .society_figure_routes import router as society_figure_router
         from .society_routes import router as society_router
         from .soul_routes import router as soul_router
         from .project_routes import router as project_router
@@ -844,25 +843,7 @@ class WebServer:
         app.include_router(mars_router)
         app.include_router(society_browser_router)
         app.include_router(browser_profile_router)
-        app.include_router(society_figure_router)
         app.include_router(drop_router)
-        # The level system (dodaios/progression): a bus listener
-        # that pays XP for real achievements. Constructing it opens nothing;
-        # start() subscribes it and the ledger opens on the first award.
-        from dodaios.progression import ProgressionService
-
-        from .progression_routes import router as progression_router
-
-        progression_data_dir = Path(
-            getattr(getattr(self.cfg, "memory", None), "data_dir", None) or "data"
-        )
-        self._progression = ProgressionService(
-            progression_data_dir / "progression.db",
-            bus=self.bus,
-            pet_id=lambda: str(getattr(getattr(self.cfg, "ui", None), "pet_id", "") or ""),
-        )
-        app.state.progression = self._progression
-        app.include_router(progression_router)
         # Default: no recorder wired up — _init_session_stack() in start()
         # sets this once it succeeds.
         app.state.session_store = None
@@ -3126,14 +3107,6 @@ class WebServer:
             except Exception as exc:  # noqa: BLE001
                 logger.opt(exception=exc).warning("AchievementEvaluator.attach() failed")
 
-        # Level system on the bus: pays XP for finished turns, tasks and quests.
-        progression = getattr(self, "_progression", None)
-        if progression is not None:
-            try:
-                progression.attach()
-            except Exception as exc:  # noqa: BLE001 - levels are optional, the app is not
-                logger.opt(exception=exc).warning("ProgressionService.attach() failed")
-
         # Bio scheduler — subscribes to achievement unlocks only. It starts no
         # task and generates nothing here; the brain is resolved per
         # generation, when a board event actually asks for one.
@@ -4277,12 +4250,6 @@ class WebServer:
                 await self._bio_scheduler.stop()
             except Exception as exc:  # noqa: BLE001
                 logger.opt(exception=exc).debug("BioScheduler.stop(): {}", exc)
-        progression = getattr(self, "_progression", None)
-        if progression is not None:
-            try:
-                progression.close()
-            except Exception as exc:  # noqa: BLE001
-                logger.opt(exception=exc).debug("ProgressionService.close(): {}", exc)
         if self._board_evaluator is not None:
             try:
                 self._board_evaluator.close()

@@ -23,10 +23,9 @@ vi.mock("@/i18n", () => ({
 vi.mock("../companion/CompanionEditor", () => ({
   CompanionEditor: ({ value }: { value: { shape: string } }) => <div data-testid="companion-editor">{value.shape}</div>,
 }));
-const { createAgent, seed, spawn, menu } = vi.hoisted(() => ({
+const { createAgent, seed, menu } = vi.hoisted(() => ({
   createAgent: vi.fn(),
   seed: vi.fn(),
-  spawn: vi.fn(),
   menu: { options: [] as unknown[], live: {} as Record<string, unknown[]> },
 }));
 vi.mock("../data", async () => {
@@ -46,7 +45,6 @@ vi.mock("../data", async () => {
   };
 });
 vi.mock("./firstMessage", () => ({ seedFirstMessage: seed }));
-vi.mock("../world/spawnStore", () => ({ announceSpawn: spawn }));
 vi.mock("../chat/useModelMenuData", () => ({
   useModelMenuData: () => ({
     options: menu.options, providers: [], live: menu.live,
@@ -230,7 +228,6 @@ describe("CreateAgentDialog: starters", () => {
     expect(typeof body.timezone).toBe("string");
     expect(body.seat.companion.shape).toBeTruthy();
     expect(body.seat.runtime).toBeUndefined();
-    expect(spawn).toHaveBeenCalledWith("agent-9");
     expect(seed).toHaveBeenCalledWith(expect.objectContaining({ agentId: "agent-9" }), "Give me a briefing for today.");
     expect(createAgent).not.toHaveBeenCalled();
   });

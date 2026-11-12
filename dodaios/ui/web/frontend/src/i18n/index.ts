@@ -124,34 +124,9 @@ export type LocaleChunk =
   | "pane_review"
   | "custom_cli"
   | "memory"
-  | "ship"
   | "self_build"
   | "trust";
 
-const SHIP_LOCALES = import.meta.glob("./locales/ship/*.json");
-
-/** Keys that would reach an object's prototype instead of the object. */
-const UNSAFE_KEYS = new Set(["__proto__", "constructor", "prototype"]);
-
-function mergeDeep(target: Record<string, unknown>, source: Record<string, unknown>): Record<string, unknown> {
-  for (const [key, value] of Object.entries(source)) {
-    if (UNSAFE_KEYS.has(key)) continue;
-    const prev = Object.prototype.hasOwnProperty.call(target, key) ? target[key] : undefined;
-    if (value && typeof value === "object" && !Array.isArray(value) && prev && typeof prev === "object") {
-      mergeDeep(prev as Record<string, unknown>, value as Record<string, unknown>);
-    } else target[key] = value;
-  }
-  return target;
-}
-
-/** Every ship locale file of one language, merged. */
-function shipLocale(lang: UiLanguage): () => Promise<unknown> {
-  return () => Promise.all(
-    Object.entries(SHIP_LOCALES)
-      .filter(([path]) => path.endsWith(`/${lang}.json`) || path.endsWith(`.${lang}.json`))
-      .map(([, load]) => load()),
-  ).then((mods) => mods.reduce<Record<string, unknown>>((all, mod) => mergeDeep(all, unwrapModule(mod)), {}));
-}
 
 const CHUNK_LOADERS: Record<LocaleChunk, Record<UiLanguage, () => Promise<unknown>>> = {
   marketplace: {
@@ -221,9 +196,6 @@ const CHUNK_LOADERS: Record<LocaleChunk, Record<UiLanguage, () => Promise<unknow
     zh: () => import("./locales/pane_review/zh.json"),
     pt: () => import("./locales/pane_review/pt.json"),
   },
-  // The Dodaios Verse starship (Agents > Dodaios Verse, the IDE's engineering tab).
-  // Its strings live in several files per language (`ship/<lang>.json` and `ship/<area>.<lang>.json`).
-  ship: { en: shipLocale("en"), de: shipLocale("de"), es: shipLocale("es"), zh: shipLocale("zh"), pt: shipLocale("pt") },
   // The Memory section (the vault reader, map and editor).
   memory: {
     en: () => import("./locales/memory/en.json"),

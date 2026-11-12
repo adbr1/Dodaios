@@ -7231,73 +7231,6 @@
       "proposal_ask_first": "erst fragen: {tools}",
       "proposal_always_allow": "immer erlauben: {tools}"
     },
-    "world": {
-      "minimap_label": "Inselkarte",
-      "mode_world": "Die Insel",
-      "hud_agents": "{0} Agenten",
-      "hud_active": "{0} aktiv",
-      "sample_badge": "Beispieldaten",
-      "reduced_motion_note": "Reduzierte Bewegung: Die Insel hält still.",
-      "controls_hint": "Ziehen zum Verschieben · Rechte Maustaste zum Drehen · Scrollen zum Zoomen · Pfeiltasten zum Bewegen · Gebäude anklicken zum Drehen",
-      "rotate_hint": "Den Knopf um das Gebäude ziehen, um es zu drehen. Mit Shift rastet es in 15°-Schritten ein.",
-      "rotate_reset": "Zurück zur Standard-Ausrichtung",
-      "rotate_reset_short": "Zurücksetzen",
-      "rotate_reset_all": "Alle Gebäude auf ihre Standard-Ausrichtung zurücksetzen",
-      "rotate_reset_all_count": "{count} gedrehte zurücksetzen",
-      "zoom_label": "Zoom",
-      "zoom_in": "Vergrößern",
-      "zoom_out": "Verkleinern",
-      "compass_label": "Blickrichtung",
-      "turn_left": "Ansicht nach links drehen (Q)",
-      "turn_right": "Ansicht nach rechts drehen (E)",
-      "view_reset": "Zurück zur Standardansicht (R)",
-      "webgl_missing_title": "Die Insel braucht WebGL",
-      "webgl_missing_body": "Dieses Fenster kann gerade kein 3D zeichnen. Das Register zeigt dieselben Agenten als Tabelle.",
-      "open_ledger": "Register öffnen",
-      "place_quests": "Questtafel",
-      "hud_quests": "Quests",
-      "quest_add_placeholder": "Neue Quest… z. B. die fünf wichtigsten Mails von heute",
-      "quest_wait_approval": "{agent} wartet in seinem Chat auf deine Freigabe – danach startet die Quest sofort",
-      "quest_wait_busy": "{agent} ist beschäftigt – die Quest startet, sobald er frei ist",
-      "quest_open_agent": "{agent} öffnen",
-      "quest_group_history": "Verlauf",
-      "drawer_quests_title": "Questtafel",
-      "drawer_quests_hint": "Gib einen Auftrag auf. Der passende Agent übernimmt ihn – passt niemand, schmiedet die Foundry einen.",
-      "quest_compose_placeholder": "Was soll erledigt werden? Zum Beispiel: die fünf wichtigsten Mails von heute",
-      "quest_compose_hint": "Strg+Enter schickt ab",
-      "quest_post": "Quest aufgeben",
-      "quest_posting": "Wird aufgegeben…",
-      "quest_group_active": "Auf der Tafel",
-      "quest_group_done": "Erledigt",
-      "quest_group_failed": "Gescheitert",
-      "quest_group_cancelled": "Abgebrochen",
-      "quest_empty": "Noch keine Quests. Gib die erste auf.",
-      "quest_state": {
-        "open": "wartet auf jemanden",
-        "assigned": "zugeteilt",
-        "running": "in Arbeit",
-        "done": "erledigt",
-        "failed": "gescheitert",
-        "cancelled": "abgebrochen"
-      },
-      "quest_taken_by": "{agent} hat sie übernommen",
-      "quest_forged": "{agent} wurde dafür geschmiedet",
-      "quest_no_taker": "Noch niemand konnte sie übernehmen",
-      "quest_cancel": "Abbrechen",
-      "quest_retry": "Erneut versuchen",
-      "quest_result_label": "Übergabe",
-      "quest_open_label": "Noch offen",
-      "quest_refused": "Abgelehnt: {reason}",
-      "quest_age_now": "gerade eben",
-      "quest_age_min": "vor {n} Min.",
-      "quest_age_h": "vor {n} Std.",
-      "quest_age_d": "vor {n} Tagen",
-      "quest_close": "Schließen",
-      "quest_loading": "Tafel wird gelesen…",
-      "quest_open_ledger": "Agenten-Register öffnen",
-      "mode_label": "Agenten-Ansicht",
-      "mode_map": "Dodaios Verse"
-    },
     "style": {
       "modern": "Modern",
       "fantasy": "Fantasy",
@@ -7573,12 +7506,6 @@
       "options_collapse": "Details ausblenden",
       "options_expand": "Details anzeigen"
     },
-    "figure": {
-      "drag_hint": "Ziehen zum Drehen und Kippen · Rad zum Zoomen · Doppelklick setzt zurück",
-      "reduced_motion": "Reduzierte Bewegung: Die Figur hält ihre Pose. Ziehen dreht sie weiterhin.",
-      "unavailable": "3D ist hier nicht verfügbar — die Farben des Agenten stehen ein.",
-      "no_figure": "Dieser Agent hat noch keine Figur."
-    },
     "strip": {
       "title": "Gesellschaft",
       "active": "{0} aktiv",
@@ -7713,7 +7640,6 @@
       }
     },
     "shell": {
-      "mode_verse": "Verse",
       "new_agent": "Neuer Agent",
       "roster_collapse": "Agentenliste einklappen",
       "roster_expand": "Agentenliste ausklappen",
@@ -8508,7 +8434,6 @@
       "changes": "Änderungen",
       "search": "Suche",
       "subscriptions": "Abos",
-      "office": "Dodaios Verse",
       "chat": "Chat",
       "resources": "Ressourcen",
       "file": "Datei"
@@ -9279,10 +9204,6 @@
         "too_large": "{file}: größer als {size} KB.",
         "not_text": "{file}: keine Textdatei."
       }
-    },
-    "office": {
-      "failed": "Das Dodaios Verse konnte nicht laden.",
-      "retry": "Erneut versuchen"
     },
     "agents": {
       "search": {
@@ -11656,7 +11577,7 @@
       "behavior": "Verhalten",
       "all_settings": "Alle Einstellungen",
       "more_options": "Weitere Optionen",
-      "more_options_hint": "Musik, Overlay, Taskleiste, Spiel",
+      "more_options_hint": "Musik, Overlay, Taskleiste",
       "opens_page": "Öffnet eine eigene Seite"
     },
     "activity": {

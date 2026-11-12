@@ -56,7 +56,18 @@ on:
   # Away from ci.yml's nightly slot so the two do not share the macOS slots.
   schedule:
     - cron: "43 9 * * *"
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      platform:
+        description: Desktop installer platform to build
+        type: choice
+        required: true
+        default: all
+        options:
+          - all
+          - macos
+          - windows
+          - linux
 
 permissions:
   contents: read
@@ -106,7 +117,7 @@ jobs:
   # ------------------------------------------------------------------ Windows
   windows:
     needs: [admit, prepare]
-    if: ${{ !failure() && !cancelled() }}
+    if: ${{ !failure() && !cancelled() && (github.event_name != 'workflow_dispatch' || inputs.platform == '' || inputs.platform == 'all' || inputs.platform == 'windows') }}
     name: Windows installer (x64)
     runs-on: windows-latest
     timeout-minutes: 90
@@ -332,7 +343,7 @@ jobs:
   # -------------------------------------------------------------------- macOS
   macos:
     needs: [admit, prepare]
-    if: ${{ !failure() && !cancelled() }}
+    if: ${{ !failure() && !cancelled() && (github.event_name != 'workflow_dispatch' || inputs.platform == '' || inputs.platform == 'all' || inputs.platform == 'macos') }}
     name: macOS installer (${{ matrix.arch }})
     runs-on: ${{ matrix.runner }}
     timeout-minutes: 90
@@ -503,7 +514,7 @@ jobs:
   # -------------------------------------------------------------------- Linux
   linux:
     needs: [admit, prepare]
-    if: ${{ !failure() && !cancelled() }}
+    if: ${{ !failure() && !cancelled() && (github.event_name != 'workflow_dispatch' || inputs.platform == '' || inputs.platform == 'all' || inputs.platform == 'linux') }}
     name: Linux installer (x86_64)
     # 22.04, not latest: an AppImage inherits the glibc of the machine that
     # built it, so building on the OLDEST supported runner is what makes it run

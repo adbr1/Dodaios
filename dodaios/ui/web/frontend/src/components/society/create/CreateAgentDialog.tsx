@@ -14,7 +14,7 @@
  * (fixed for the agent's life) and any connected provider. Mounted once
  * (App.tsx); every plus opens it through `useCreateAgentDialog`.
  */
-import { useEffect, useMemo, useRef, useState, Suspense, lazy, type KeyboardEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, Loader2, X } from "lucide-react";
@@ -24,7 +24,6 @@ import { cn } from "@/lib/utils";
 import { AgentNameTaken, RuntimeProviderUnsupported, rowToAgent, useCreateSocietyAgent, type SocietyAgent } from "../data";
 import type { SocietyAgentRow } from "@/lib/societyApi";
 import { defaultCompanion, type CompanionAppearance } from "../companion/appearance";
-import { announceSpawn } from "../world/spawnStore";
 import { useCreateAgentDialog, type CreateAgentMode } from "./createAgentStore";
 import { seedFirstMessage } from "./firstMessage";
 import { EMPTY_IMPORT, ImportTemplatePane, type ImportState } from "./ImportTemplatePane";
@@ -34,10 +33,6 @@ import { defaultTools, starterCopy, type AreaFilter } from "./starterFilters";
 import { installStarter, useStarters, type InstallStarterResult, type Starter, type StarterSeat } from "./startersApi";
 import { TemplatePreviewCard } from "./TemplatePreviewCard";
 import "../calmSheet.css";
-
-const CompanionEditor = lazy(() =>
-  import("../companion/CompanionEditor").then((m) => ({ default: m.CompanionEditor })),
-);
 
 const MODES: readonly { id: CreateAgentMode }[] = [{ id: "quick" }, { id: "starter" }, { id: "import" }];
 
@@ -85,7 +80,7 @@ function CreateAgentDialog() {
   }
   const [name, setName] = useState("");
   const [job, setJob] = useState("");
-  const [companion, setCompanion] = useState<CompanionAppearance>(randomCompanion);
+  const [companion] = useState<CompanionAppearance>(randomCompanion);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   // Created, but the routine it was asked for could not be set up: say so before the chat opens.
@@ -144,7 +139,7 @@ function CreateAgentDialog() {
   async function afterInstall(result: InstallStarterResult, firstMessage: string) {
     const agent = rowToAgent(result.agent as unknown as SocietyAgentRow);
     // The island owes this row an entrance: it walks out of the foundry.
-    announceSpawn(agent.agentId);
+
     await client.invalidateQueries({ queryKey: ["society", "roster"] });
     await seedFirstMessage(agent, firstMessage).catch(() => false);
     if (result.routine_error) {
@@ -297,14 +292,7 @@ function CreateAgentDialog() {
                     />
                     <span className="cs-hint">{t("agent_create.quick.job_hint")}</span>
                   </label>
-                  <div className="flex flex-col gap-2">
-                    <span className="cs-label">{t("society.create_agent.companion_label")}</span>
-                    <div className="-mx-4">
-                      <Suspense fallback={null}>
-                        <CompanionEditor value={companion} onChange={setCompanion} disabled={saving} preview3d={false} />
-                      </Suspense>
-                    </div>
-                  </div>
+
                 </div>
                 <div className="min-h-0 px-6 pb-6 pt-3 md:overflow-y-auto">
                   <SeatFields seat={seat} disabled={saving} />

@@ -44,7 +44,6 @@ import { InlineEdit } from "./pane/ui";
 import { ToolsTab } from "./pane/ToolsTab";
 import "./pane/agentPane.css";
 
-const AgentAppearanceDialog = lazy(() => import("../companion/AgentAppearanceDialog").then(m => ({ default: m.AgentAppearanceDialog })));
 const ShareAgentDialog = lazy(() => import("./ShareAgentDialog").then(m => ({ default: m.ShareAgentDialog })));
 
 export interface OptionsRailProps {
@@ -73,7 +72,6 @@ export function OptionsRail({ agent, onRetired, sample = false, width, onModelSa
   const [tab, setTab] = usePaneTab(available);
   const stack = usePaneStack();
   const [visited, setVisited] = useState<Set<PaneTab>>(() => new Set([tab]));
-  const [appearanceOpen, setAppearanceOpen] = useState(false);
   const [shareOpen, setShareOpen] = useState(false);
   const queue = useReviewQueue(agent.agentId, !sample);
   // Only real decisions (a proposal, a share request) mark the tab; the
@@ -83,7 +81,6 @@ export function OptionsRail({ agent, onRetired, sample = false, width, onModelSa
   const name = societyDisplayName(agent, assistantName);
 
   useEffect(() => {
-    setAppearanceOpen(false);
     setShareOpen(false);
     reset();
   }, [agent.agentId, reset]);
@@ -112,7 +109,6 @@ export function OptionsRail({ agent, onRetired, sample = false, width, onModelSa
         agent={agent}
         sample={sample}
         name={name}
-        onLook={() => setAppearanceOpen(true)}
         onShare={() => setShareOpen(true)}
         onRetired={onRetired}
         onClose={pane?.close}
@@ -198,7 +194,6 @@ export function OptionsRail({ agent, onRetired, sample = false, width, onModelSa
           );
         })}
       </Tabs.Root>
-      {appearanceOpen && <Suspense fallback={null}><AgentAppearanceDialog key={agent.agentId} agent={agent} sample={sample} onClose={() => setAppearanceOpen(false)} /></Suspense>}
       {shareOpen && <Suspense fallback={null}><ShareAgentDialog key={agent.agentId} agent={agent} onClose={() => setShareOpen(false)} /></Suspense>}
     </aside>
   );
@@ -208,7 +203,6 @@ function PaneHeader({
   agent,
   sample,
   name,
-  onLook,
   onShare,
   onRetired,
   onClose,
@@ -216,7 +210,6 @@ function PaneHeader({
   agent: SocietyAgent;
   sample: boolean;
   name: string;
-  onLook: () => void;
   onShare: () => void;
   onRetired: () => void;
   onClose?: () => void;
@@ -282,10 +275,6 @@ function PaneHeader({
           </button>
           {more ? (
             <div role="menu" className="ap-menu shadow-float">
-              <button type="button" role="menuitem" className="ap-menu-item" data-testid="edit-agent-appearance"
-                onClick={() => { setMore(false); onLook(); }}>
-                {t("society.companion.appearance")}
-              </button>
               {/* The lead is every install's own assistant and sample rows are not real agents: neither is shareable. */}
               {!lead && !sample ? (
                 <button type="button" role="menuitem" className="ap-menu-item" data-testid="share-agent" title={t("society.share.cta_hint")}

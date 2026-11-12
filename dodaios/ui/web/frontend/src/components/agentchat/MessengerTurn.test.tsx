@@ -88,12 +88,12 @@ describe("MessengerTurn", () => {
     expect(screen.queryByTestId("messenger-presence")).toBeNull();
   });
 
-  it("shows the agent's face with what it is doing while it works", () => {
+  it("shows activity as text without the animated agent face", () => {
     render(<MessengerTurn turn={turn([call("society_wiki_note", { title: "x" })])}
       avatar={<span data-testid="face" />} color="#7ab6ef" onDecide={() => undefined} />);
     const line = screen.getByTestId("messenger-presence");
     expect(line.dataset.presence).toBe("writing");
-    expect(screen.getByTestId("face")).toBeTruthy();
+    expect(screen.queryByTestId("face")).toBeNull();
   });
 
   it("opens memory receipts from the Noted quill lines, never as a line of their own twice", () => {

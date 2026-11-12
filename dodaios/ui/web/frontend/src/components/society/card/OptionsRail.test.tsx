@@ -175,7 +175,7 @@ describe("OptionsRail (agent pane)", () => {
     expect(screen.getByTestId("agent-pane-anatomy").querySelector("svg")).toBeNull();
     expect(screen.queryByTestId("edit-agent-appearance")).toBeNull();
     fireEvent.click(screen.getByTestId("agent-card-options-more"));
-    expect(screen.getByTestId("edit-agent-appearance")).toBeTruthy();
+    expect(screen.queryByTestId("edit-agent-appearance")).toBeNull();
     expect(screen.getByTestId("share-agent")).toBeTruthy();
     expect(screen.getByTestId("agent-card-retire")).toBeTruthy();
   });

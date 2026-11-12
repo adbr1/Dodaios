@@ -33,7 +33,7 @@ export function MemoryFileViewer({ path, before, after, patch, onClose }: {
         <header className="flex shrink-0 items-center gap-3 border-b border-border p-4">
           <FileText size={18} aria-hidden className="shrink-0" />
           <div className="min-w-0 flex-1"><Dialog.Title className="truncate text-sm font-semibold">{path.split("/").at(-1)}</Dialog.Title><Dialog.Description className="mt-1 truncate font-mono text-xs text-muted-foreground">{path}</Dialog.Description></div>
-          <Dialog.Close asChild><button type="button" aria-label={t("society.world.drawer_close")} className="rounded-md p-2 hover:bg-secondary focus-visible:ring-2 focus-visible:ring-ring"><X size={16} aria-hidden /></button></Dialog.Close>
+          <Dialog.Close asChild><button type="button" aria-label={t("common.close")} className="rounded-md p-2 hover:bg-secondary focus-visible:ring-2 focus-visible:ring-ring"><X size={16} aria-hidden /></button></Dialog.Close>
         </header>
         <Tabs defaultValue={hasChange ? "changes" : "file"} className="flex min-h-0 flex-1 flex-col">
           <TabsList className="mx-4 mt-3 w-fit shrink-0">

@@ -7231,73 +7231,6 @@
       "proposal_ask_first": "ask first: {tools}",
       "proposal_always_allow": "always allow: {tools}"
     },
-    "world": {
-      "minimap_label": "Island map",
-      "mode_world": "The island",
-      "hud_agents": "{0} agents",
-      "hud_active": "{0} active",
-      "sample_badge": "Sample data",
-      "reduced_motion_note": "Motion reduced: the island holds still.",
-      "controls_hint": "Drag to pan · Right-drag to turn the view · Scroll to zoom · Arrow keys to move · Click a building to turn it",
-      "rotate_hint": "Drag the knob around the building to turn it. Shift snaps to 15° steps.",
-      "rotate_reset": "Back to the designed heading",
-      "rotate_reset_short": "Reset",
-      "rotate_reset_all": "Turn every building back to its designed heading",
-      "rotate_reset_all_count": "Reset {count} turned",
-      "zoom_label": "Zoom",
-      "zoom_in": "Zoom in",
-      "zoom_out": "Zoom out",
-      "compass_label": "View direction",
-      "turn_left": "Turn the view left (Q)",
-      "turn_right": "Turn the view right (E)",
-      "view_reset": "Back to the designed view (R)",
-      "webgl_missing_title": "The island needs WebGL",
-      "webgl_missing_body": "This window cannot draw 3D right now. The ledger shows the same agents as a table.",
-      "open_ledger": "Open the ledger",
-      "place_quests": "Quest Board",
-      "hud_quests": "Quests",
-      "quest_add_placeholder": "New quest… e.g. the five most important mails of today",
-      "quest_wait_approval": "{agent} is waiting for your approval in its chat — the quest starts right after",
-      "quest_wait_busy": "{agent} is busy — the quest starts as soon as it is free",
-      "quest_open_agent": "Open {agent}",
-      "quest_group_history": "History",
-      "drawer_quests_title": "Quest Board",
-      "drawer_quests_hint": "Post a job. The agent who fits takes it — when nobody fits, the Foundry forges one.",
-      "quest_compose_placeholder": "What should be done? For example: the five most important mails of today",
-      "quest_compose_hint": "Ctrl+Enter posts",
-      "quest_post": "Post quest",
-      "quest_posting": "Posting…",
-      "quest_group_active": "On the board",
-      "quest_group_done": "Completed",
-      "quest_group_failed": "Failed",
-      "quest_group_cancelled": "Cancelled",
-      "quest_empty": "No quests yet. Post the first one.",
-      "quest_state": {
-        "open": "waiting for a taker",
-        "assigned": "assigned",
-        "running": "in progress",
-        "done": "done",
-        "failed": "failed",
-        "cancelled": "cancelled"
-      },
-      "quest_taken_by": "{agent} took it",
-      "quest_forged": "{agent} was forged for it",
-      "quest_no_taker": "Nobody could take it yet",
-      "quest_cancel": "Cancel",
-      "quest_retry": "Retry",
-      "quest_result_label": "Handoff",
-      "quest_open_label": "Still open",
-      "quest_refused": "Refused: {reason}",
-      "quest_age_now": "just now",
-      "quest_age_min": "{n} min ago",
-      "quest_age_h": "{n} h ago",
-      "quest_age_d": "{n} d ago",
-      "quest_close": "Close",
-      "quest_loading": "Reading the board…",
-      "quest_open_ledger": "Open the agents ledger",
-      "mode_label": "Agents view",
-      "mode_map": "Dodaios Verse"
-    },
     "style": {
       "modern": "Modern",
       "fantasy": "Fantasy",
@@ -7573,12 +7506,6 @@
       "options_collapse": "Hide details",
       "options_expand": "Show details"
     },
-    "figure": {
-      "drag_hint": "Drag to turn and tilt · wheel to zoom · double-click to reset",
-      "reduced_motion": "Motion reduced: the figure holds its pose. Drag still turns it.",
-      "unavailable": "3D is unavailable here — the agent's colours stand in.",
-      "no_figure": "This agent has no figure yet."
-    },
     "strip": {
       "title": "Society",
       "active": "{0} active",
@@ -7713,7 +7640,6 @@
       }
     },
     "shell": {
-      "mode_verse": "Verse",
       "new_agent": "New agent",
       "roster_collapse": "Fold the agent list",
       "roster_expand": "Unfold the agent list",
@@ -8508,7 +8434,6 @@
       "changes": "Changes",
       "search": "Search",
       "subscriptions": "Subscriptions",
-      "office": "Dodaios Verse",
       "chat": "Chat",
       "resources": "Resources",
       "file": "File"
@@ -9279,10 +9204,6 @@
         "too_large": "{file}: larger than {size} KB.",
         "not_text": "{file}: not a text file."
       }
-    },
-    "office": {
-      "failed": "The Dodaios Verse could not load.",
-      "retry": "Try again"
     },
     "agents": {
       "search": {
@@ -11656,7 +11577,7 @@
       "behavior": "Behavior",
       "all_settings": "All settings",
       "more_options": "More options",
-      "more_options_hint": "Music, overlay, taskbar, game",
+      "more_options_hint": "Music, overlay, taskbar",
       "opens_page": "Opens its own page"
     },
     "activity": {

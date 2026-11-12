@@ -288,12 +288,8 @@ elif ! cmp -s "${REPO_ROOT}/jarvis.toml" "${REPO_ROOT}/dodaios.toml.example"; th
   log "WARNING: dodaios.spec bundles this machine's jarvis.toml into the app, and it differs from dodaios.toml.example. Check it carries nothing personal before publishing the build."
 fi
 
-if [ -f "${ICNS}" ] || [ "${DRY_RUN}" = "1" ]; then
-  :
-else
-  log "regenerating the app icon (${ICNS} is missing)"
-  run "${PYTHON}" "${SCRIPT_DIR}/make_icns.py"
-fi
+log "regenerating the macOS app icon with its optical safe area"
+run "${PYTHON}" "${SCRIPT_DIR}/make_icns.py"
 
 log "preparing compiler-free browser dependencies"
 run "${PYTHON}" "${REPO_ROOT}/scripts/prepare_browser_wheelhouse.py"

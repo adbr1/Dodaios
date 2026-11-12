@@ -6,7 +6,7 @@ import { QuestionCard } from "./QuestionCard";
 import { ApprovalActionCard, type ApprovalDecide } from "./actionCard/ApprovalActionCard";
 import type { ToolBlock, TurnBlock, TurnItem } from "./reduce";
 import { actionNoticeOf, type ActionNotice } from "./messengerPresence";
-import { BotStage, useDoneFlourish } from "./botStage/BotStage";
+import { BotStage } from "./botStage/BotStage";
 import { ActivityLine } from "./activity/ActivityLine";
 import type { NameOf } from "./activity/activityModel";
 import { WorkDisclosure } from "./activity/WorkDisclosure";
@@ -51,7 +51,6 @@ export const MessengerTurn = memo(function MessengerTurn({ turn, avatar, color, 
   const t = useT();
   const textLength = useMemo(() => turn.blocks.reduce((n, block) => n + (block.kind === "text" ? block.text.length : 0), 0), [turn.blocks]);
   const hasText = textLength > 0 && turn.blocks.some((block) => block.kind === "text" && block.text.trim());
-  const flourish = useDoneFlourish(turn.status === "running", turn.status === "done");
   const running = turn.status === "running";
   // A turn the runtime ended with an error, or that ended silent with an
   // error on record, failed: it says why, whatever runtime ran it.
@@ -87,15 +86,14 @@ export const MessengerTurn = memo(function MessengerTurn({ turn, avatar, color, 
       return <ActionLine key={block.callId} notice={notice} link={link} />;
     })}
     {memoryLinks?.slice(noteIndex).map((link) => <ActionLine key={`memory:${link.key}`} notice={NOTED} link={link} />)}
-    {/* While it works: the face and one paced phrase for the step it is on,
-        with the live work one click away. Once done: a short flourish. */}
+    {/* Activity stays readable while the turn runs; finished turns settle immediately. */}
     {running ? <div className="flex min-w-0 flex-wrap items-center gap-x-2">
       <ActivityLine turn={turn} avatar={avatar} color={color} nameOf={nameOf} peerFace={peerFace} />
       {work}
-    </div> : flourish ? <BotStage presence="done" seed={turn.id} avatar={avatar} color={color} /> : null}
+    </div> : null}
     {failed && <TurnFailure view={turnErrorView(turn.error, turn.errorDetails, t)} onRetry={onRetry} />}
     {turn.status === "cancelled" && <SystemLine>{t("thread_turn.stopped")}</SystemLine>}
-    {turn.status === "done" && !failed && !hasText && !flourish && <SystemLine>{t("thread_turn.no_answer")}</SystemLine>}
+    {turn.status === "done" && !failed && !hasText && <SystemLine>{t("thread_turn.no_answer")}</SystemLine>}
     {!running ? work : null}
   </div>;
 });

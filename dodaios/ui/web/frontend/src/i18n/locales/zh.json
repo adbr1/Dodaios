@@ -7231,73 +7231,6 @@
       "proposal_ask_first": "先询问：{tools}",
       "proposal_always_allow": "始终允许：{tools}"
     },
-    "world": {
-      "minimap_label": "岛屿地图",
-      "mode_world": "岛屿",
-      "hud_agents": "{0} 个智能体",
-      "hud_active": "{0} 个活跃",
-      "sample_badge": "示例数据",
-      "reduced_motion_note": "已减少动态效果：岛屿保持静止。",
-      "controls_hint": "拖动以平移 · 右键拖动以旋转视角 · 滚轮缩放 · 方向键移动 · 点击建筑可旋转它",
-      "rotate_hint": "绕着建筑拖动旋钮来旋转它。按住 Shift 以 15° 为步长对齐。",
-      "rotate_reset": "恢复设计朝向",
-      "rotate_reset_short": "重置",
-      "rotate_reset_all": "把所有建筑恢复到设计朝向",
-      "rotate_reset_all_count": "重置 {count} 个已旋转的建筑",
-      "zoom_label": "缩放",
-      "zoom_in": "放大",
-      "zoom_out": "缩小",
-      "compass_label": "视角方向",
-      "turn_left": "向左旋转视角（Q）",
-      "turn_right": "向右旋转视角（E）",
-      "view_reset": "恢复设计视角（R）",
-      "webgl_missing_title": "岛屿需要 WebGL",
-      "webgl_missing_body": "此窗口目前无法绘制 3D。名册以表格形式显示相同的智能体。",
-      "open_ledger": "打开名册",
-      "place_quests": "任务公告板",
-      "hud_quests": "任务",
-      "quest_add_placeholder": "新任务…例如今天最重要的五封邮件",
-      "quest_wait_approval": "{agent} 正在它的对话中等待你的审批——审批后任务立即开始",
-      "quest_wait_busy": "{agent} 正忙——空闲后任务立即开始",
-      "quest_open_agent": "打开 {agent}",
-      "quest_group_history": "历史",
-      "drawer_quests_title": "任务公告板",
-      "drawer_quests_hint": "发布一项工作。合适的智能体会接下它——没有合适的，铸造厂就会打造一个。",
-      "quest_compose_placeholder": "要做什么？例如：今天最重要的五封邮件",
-      "quest_compose_hint": "Ctrl+Enter 发布",
-      "quest_post": "发布任务",
-      "quest_posting": "发布中…",
-      "quest_group_active": "公告板上",
-      "quest_group_done": "已完成",
-      "quest_group_failed": "失败",
-      "quest_group_cancelled": "已取消",
-      "quest_empty": "还没有任务。发布第一个吧。",
-      "quest_state": {
-        "open": "等待接手",
-        "assigned": "已分配",
-        "running": "进行中",
-        "done": "已完成",
-        "failed": "失败",
-        "cancelled": "已取消"
-      },
-      "quest_taken_by": "{agent} 接下了它",
-      "quest_forged": "为它打造了 {agent}",
-      "quest_no_taker": "暂时没人能接手",
-      "quest_cancel": "取消",
-      "quest_retry": "重试",
-      "quest_result_label": "交接",
-      "quest_open_label": "仍未完成",
-      "quest_refused": "已拒绝：{reason}",
-      "quest_age_now": "刚刚",
-      "quest_age_min": "{n} 分钟前",
-      "quest_age_h": "{n} 小时前",
-      "quest_age_d": "{n} 天前",
-      "quest_close": "关闭",
-      "quest_loading": "正在读取公告板…",
-      "quest_open_ledger": "打开智能体名册",
-      "mode_label": "智能体视图",
-      "mode_map": "Dodaios Verse"
-    },
     "style": {
       "modern": "现代",
       "fantasy": "奇幻",
@@ -7573,12 +7506,6 @@
       "options_collapse": "隐藏详情",
       "options_expand": "显示详情"
     },
-    "figure": {
-      "drag_hint": "拖动以旋转和倾斜 · 滚轮缩放 · 双击重置",
-      "reduced_motion": "已减少动态效果：形象保持姿势不动。拖动仍可旋转。",
-      "unavailable": "此处无法使用 3D——以智能体的配色代替。",
-      "no_figure": "这个智能体还没有形象。"
-    },
     "strip": {
       "title": "社群",
       "active": "{0} 个活跃",
@@ -7713,7 +7640,6 @@
       }
     },
     "shell": {
-      "mode_verse": "Verse",
       "new_agent": "新建智能体",
       "roster_collapse": "收起智能体列表",
       "roster_expand": "展开智能体列表",
@@ -8508,7 +8434,6 @@
       "changes": "更改",
       "search": "搜索",
       "subscriptions": "订阅",
-      "office": "Dodaios Verse",
       "chat": "聊天",
       "resources": "资源",
       "file": "文件"
@@ -9279,10 +9204,6 @@
         "too_large": "{file}：大于 {size} KB。",
         "not_text": "{file}：不是文本文件。"
       }
-    },
-    "office": {
-      "failed": "Dodaios Verse 无法加载。",
-      "retry": "重试"
     },
     "agents": {
       "search": {
@@ -11656,7 +11577,7 @@
       "behavior": "行为",
       "all_settings": "全部设置",
       "more_options": "更多选项",
-      "more_options_hint": "音乐、悬浮层、任务栏、游戏",
+      "more_options_hint": "音乐、叠加层、任务栏",
       "opens_page": "打开独立页面"
     },
     "activity": {

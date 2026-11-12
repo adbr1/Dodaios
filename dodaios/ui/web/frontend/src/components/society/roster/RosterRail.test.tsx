@@ -3,7 +3,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import type { SocietyAgent } from "@/components/society/data";
-import { useRetireStore } from "@/components/society/world/retireStore";
 import { useEventStore } from "@/store/events";
 import { RosterRail, type RosterRailProps } from "./RosterRail";
 
@@ -12,7 +11,6 @@ vi.mock("@/hooks/usePets", async (original) => ({ ...(await original<typeof impo
 vi.mock("@/i18n", () => ({ useT: () => (key: string) => key, useUiLanguage: () => "en" }));
 
 afterEach(() => {
-  useRetireStore.getState().cutShort();
   cleanup();
   localStorage.clear();
   vi.unstubAllGlobals();

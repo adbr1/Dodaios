@@ -11,24 +11,23 @@ Run it from anywhere; it resolves the repository from this file's location:
     python packaging/macos/make_icns.py            # write the icns
     python packaging/macos/make_icns.py --check    # verify only, write nothing
 
-Honest limitation, deliberately not hidden: the largest mascot master in the
-repository is 256x256 (``assets/icons/dodaios-gigi-256.png``). Apple's icon set
-goes to 1024x1024, so the 512 and 1024 members are upscaled with Lanczos
-resampling and are correspondingly soft on a Retina display at large sizes.
-Drop a 1024x1024 master next to the 256 one and rerun this script to fix that
-for good — :data:`SOURCE_CANDIDATES` prefers the biggest available source.
+The 1024 px master is kept unchanged. Every generated member uses the same
+macOS-specific transparent inset, shared with the source-install app builder.
 
 Pillow's ICNS writer always emits the full ``ic07``/``ic08``/``ic09``/``ic10``/
 ``ic11``/``ic12``/``ic13``/``ic14`` member set and ignores a ``sizes=``
 argument, so the quality knob that actually works is ``append_images``: every
 member we hand it is used verbatim instead of Pillow's own default-resampled
-resize. That is why this script renders all six distinct sizes itself.
+resize. That is why this script renders every distinct pixel size itself.
 """
 
 from __future__ import annotations
 
 import argparse
+import runpy
+import struct
 import sys
+from io import BytesIO
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -44,7 +43,7 @@ SOURCE_CANDIDATES: tuple[str, ...] = (
 )
 
 #: The distinct pixel sizes an ``.icns`` written by Pillow contains.
-ICNS_SIZES: tuple[int, ...] = (32, 64, 128, 256, 512, 1024)
+ICNS_SIZES: tuple[int, ...] = (16, 32, 64, 128, 256, 512, 1024)
 
 
 def _pick_source() -> Path:
@@ -72,13 +71,18 @@ def build(target: Path = TARGET) -> Path:
                 f"{source_path} is {master.width}x{master.height}; "
                 "an app icon master must be square"
             )
-        # Rendered here rather than left to Pillow: its writer resizes with the
-        # default filter, Lanczos keeps the mascot's thin outline readable at
-        # 32 px and its glow clean when upscaled.
-        members = [master.resize((size, size), Image.Resampling.LANCZOS) for size in ICNS_SIZES]
+        renderer = runpy.run_path(str(REPO_ROOT / "dodaios/setup/macos_icon.py"))
+        render_icon = renderer["render_icon"]
+        members = [render_icon(master, size) for size in ICNS_SIZES]
         largest = members[-1]
         target.parent.mkdir(parents=True, exist_ok=True)
         largest.save(target, format="ICNS", append_images=members)
+        # Pillow omits the 16 px @1x slot. Include it for small Finder rows.
+        small = BytesIO()
+        render_icon(master, 16).save(small, format="PNG")
+        member = b"icp4" + struct.pack(">I", len(small.getvalue()) + 8) + small.getvalue()
+        data = target.read_bytes()
+        target.write_bytes(b"icns" + struct.pack(">I", len(data) + len(member)) + data[8:] + member)
     return target
 
 
@@ -103,6 +107,15 @@ def verify(target: Path = TARGET) -> list[int]:
     missing = [size for size in ICNS_SIZES if size not in sizes]
     if missing:
         raise SystemExit(f"{target} is missing icon sizes: {', '.join(str(s) for s in missing)}")
+    with Image.open(target) as icns:
+        for logical_w, logical_h, scale in icns.info["sizes"]:
+            rgba = icns.icns.getimage((logical_w, logical_h, scale)).convert("RGBA")
+            alpha = rgba.getchannel("A")
+            bounds = alpha.getbbox()
+            margin = max(1, int(rgba.width * 0.08))
+            if (bounds is None or bounds[0] < margin or bounds[1] < margin
+                    or bounds[2] > rgba.width - margin or bounds[3] > rgba.height - margin):
+                raise SystemExit(f"{target}: {rgba.width}px member has no macOS safe area")
     return sizes
 
 

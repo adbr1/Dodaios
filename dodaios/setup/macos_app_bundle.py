@@ -704,7 +704,11 @@ def _try_build_icns(resources_dir: Path) -> str | None:
     try:
         from PIL import Image  # noqa: PLC0415 - optional at this boundary
 
-        source = Path(__file__).resolve().parents[1] / "assets" / "icons" / "dodaios.png"
+        from dodaios.setup.macos_icon import render_icon
+
+        source = Path(__file__).resolve().parents[2] / "assets/icons/dodaios-1024.png"
+        if not source.is_file():
+            source = Path(__file__).resolve().parents[1] / "assets/icons/dodaios.png"
         if not source.is_file():
             return None
         with tempfile.TemporaryDirectory() as raw_tmp:
@@ -716,8 +720,8 @@ def _try_build_icns(resources_dir: Path) -> str | None:
             # iconset over one bad name, so the app shipped without any icon.
             # The 64 px slot is already covered by icon_32x32@2x.png.
             for size in (16, 32, 128, 256, 512):
-                image.resize((size, size)).save(iconset / f"icon_{size}x{size}.png")
-                image.resize((size * 2, size * 2)).save(iconset / f"icon_{size}x{size}@2x.png")
+                render_icon(image, size).save(iconset / f"icon_{size}x{size}.png")
+                render_icon(image, size * 2).save(iconset / f"icon_{size}x{size}@2x.png")
             output = resources_dir / "dodaios.icns"
             result = subprocess.run(
                 ["iconutil", "-c", "icns", str(iconset), "-o", str(output)],

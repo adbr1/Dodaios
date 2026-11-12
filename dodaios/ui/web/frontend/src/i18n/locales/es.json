@@ -7231,73 +7231,6 @@
       "proposal_ask_first": "preguntar antes: {tools}",
       "proposal_always_allow": "permitir siempre: {tools}"
     },
-    "world": {
-      "minimap_label": "Mapa de la isla",
-      "mode_world": "La isla",
-      "hud_agents": "{0} agentes",
-      "hud_active": "{0} activos",
-      "sample_badge": "Datos de ejemplo",
-      "reduced_motion_note": "Movimiento reducido: la isla se queda quieta.",
-      "controls_hint": "Arrastra para desplazar · Botón derecho para girar la vista · Rueda para acercar · Flechas para mover · Clic en un edificio para girarlo",
-      "rotate_hint": "Arrastra el mando alrededor del edificio para girarlo. Con Mayús se ajusta en pasos de 15°.",
-      "rotate_reset": "Volver a la orientación de diseño",
-      "rotate_reset_short": "Restablecer",
-      "rotate_reset_all": "Devolver todos los edificios a su orientación de diseño",
-      "rotate_reset_all_count": "Restablecer {count} girados",
-      "zoom_label": "Zoom",
-      "zoom_in": "Acercar",
-      "zoom_out": "Alejar",
-      "compass_label": "Dirección de la vista",
-      "turn_left": "Girar la vista a la izquierda (Q)",
-      "turn_right": "Girar la vista a la derecha (E)",
-      "view_reset": "Volver a la vista original (R)",
-      "webgl_missing_title": "La isla necesita WebGL",
-      "webgl_missing_body": "Esta ventana no puede dibujar 3D ahora. El registro muestra los mismos agentes como tabla.",
-      "open_ledger": "Abrir el registro",
-      "place_quests": "Tablón de misiones",
-      "hud_quests": "Misiones",
-      "quest_add_placeholder": "Nueva misión… p. ej. los cinco correos más importantes de hoy",
-      "quest_wait_approval": "{agent} espera tu aprobación en su chat; la misión empieza justo después",
-      "quest_wait_busy": "{agent} está ocupado; la misión empieza en cuanto quede libre",
-      "quest_open_agent": "Abrir {agent}",
-      "quest_group_history": "Historial",
-      "drawer_quests_title": "Tablón de misiones",
-      "drawer_quests_hint": "Publica un encargo. El agente adecuado lo toma; si nadie encaja, la Fundición forja uno.",
-      "quest_compose_placeholder": "¿Qué hay que hacer? Por ejemplo: los cinco correos más importantes de hoy",
-      "quest_compose_hint": "Ctrl+Intro publica",
-      "quest_post": "Publicar misión",
-      "quest_posting": "Publicando…",
-      "quest_group_active": "En el tablón",
-      "quest_group_done": "Completadas",
-      "quest_group_failed": "Fallidas",
-      "quest_group_cancelled": "Canceladas",
-      "quest_empty": "Aún no hay misiones. Publica la primera.",
-      "quest_state": {
-        "open": "espera a alguien",
-        "assigned": "asignada",
-        "running": "en curso",
-        "done": "hecha",
-        "failed": "fallida",
-        "cancelled": "cancelada"
-      },
-      "quest_taken_by": "{agent} la tomó",
-      "quest_forged": "{agent} fue forjado para ella",
-      "quest_no_taker": "Nadie ha podido tomarla aún",
-      "quest_cancel": "Cancelar",
-      "quest_retry": "Reintentar",
-      "quest_result_label": "Entrega",
-      "quest_open_label": "Pendiente",
-      "quest_refused": "Rechazada: {reason}",
-      "quest_age_now": "ahora mismo",
-      "quest_age_min": "hace {n} min",
-      "quest_age_h": "hace {n} h",
-      "quest_age_d": "hace {n} d",
-      "quest_close": "Cerrar",
-      "quest_loading": "Leyendo el tablón…",
-      "quest_open_ledger": "Abrir el registro de agentes",
-      "mode_label": "Vista de agentes",
-      "mode_map": "Dodaios Verse"
-    },
     "style": {
       "modern": "Moderno",
       "fantasy": "Fantasía",
@@ -7573,12 +7506,6 @@
       "options_collapse": "Ocultar detalles",
       "options_expand": "Mostrar detalles"
     },
-    "figure": {
-      "drag_hint": "Arrastra para girar e inclinar · rueda para acercar · doble clic restablece",
-      "reduced_motion": "Movimiento reducido: la figura mantiene su pose. Arrastrar sigue girándola.",
-      "unavailable": "El 3D no está disponible aquí — los colores del agente lo sustituyen.",
-      "no_figure": "Este agente aún no tiene figura."
-    },
     "strip": {
       "title": "Sociedad",
       "active": "{0} activos",
@@ -7713,7 +7640,6 @@
       }
     },
     "shell": {
-      "mode_verse": "Verse",
       "new_agent": "Nuevo agente",
       "roster_collapse": "Plegar la lista de agentes",
       "roster_expand": "Desplegar la lista de agentes",
@@ -8508,7 +8434,6 @@
       "changes": "Cambios",
       "search": "Buscar",
       "subscriptions": "Suscripciones",
-      "office": "Dodaios Verse",
       "chat": "Chat",
       "resources": "Recursos",
       "file": "Archivo"
@@ -9279,10 +9204,6 @@
         "too_large": "{file}: ocupa más de {size} KB.",
         "not_text": "{file}: no es un archivo de texto."
       }
-    },
-    "office": {
-      "failed": "No se pudo cargar el Dodaios Verse.",
-      "retry": "Reintentar"
     },
     "agents": {
       "search": {
@@ -11656,7 +11577,7 @@
       "behavior": "Comportamiento",
       "all_settings": "Todos los ajustes",
       "more_options": "Más opciones",
-      "more_options_hint": "Música, superposición, barra de tareas, juego",
+      "more_options_hint": "Música, superposición, barra de tareas",
       "opens_page": "Abre su propia página"
     },
     "activity": {

@@ -85,12 +85,8 @@ export interface FigureCatalog {
 
 export const CATALOG = catalogJson as FigureCatalog;
 
-/** Every shipped GLB, keyed by its path under assets/society/figures/. */
-const FILES = import.meta.glob("../../../assets/society/figures/**/*.glb", {
-  query: "?url",
-  import: "default",
-  eager: true,
-}) as Record<string, string>;
+/** Legacy recipes remain readable; game geometry is no longer shipped. */
+const FILES: Record<string, string> = {};
 
 function urlForFile(file: string): string | null {
   const suffix = `/assets/society/figures/${file}`;

@@ -121,7 +121,7 @@ describe("announcer", () => {
 });
 
 describe("live turn", () => {
-  it("keeps the same turn mounted when it finishes, so the done flourish can play", () => {
+  it("keeps the same turn mounted when it finishes without disrupting the transcript", () => {
     const start = [
       ev("user_message", { text: "hi" }, BASE),
       ev("turn_started", { turn_id: "t1", provider: "openai" }, BASE + 1),
