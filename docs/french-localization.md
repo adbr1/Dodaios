@@ -105,3 +105,34 @@ source tree. Do not commit generated frontend files.
 
 The exact file list for this repair is in
 [french-localization-files.txt](french-localization-files.txt).
+
+## Verified installer downloads
+
+- [Apple Silicon DMG artifact](https://github.com/adbr1/Dodaios/actions/runs/43206892246/artifacts/13940692915):
+  native ARM64 on the supported macOS 26 runner, source commit
+  `df46981f63df664d9501b2d7b765543e7441d309`. Native icon, translation,
+  settings/navigation tests, frozen-bundle validation, packaged French checks
+  and DMG verification all passed.
+- [Intel DMG artifact](https://github.com/adbr1/Dodaios/actions/runs/43204113111/artifacts/13936204995):
+  macOS 15 Intel runner, application source commit
+  `e6528e270bbafd13c8f5e6b2949ca23157232428`. The same tests and artifact
+  validations passed. The run is marked cancelled because its redundant ARM64
+  retry was stopped after a runner was acquired for the separate ARM64 build;
+  the successful Intel job and its uploaded artifact are preserved.
+
+The application code in these two source commits is identical. The intervening
+changes add verification documentation/tests and a separate ARM64 workflow. The
+original ARM64 job could not acquire a macOS 15 hosted runner within 15 minutes;
+GitHub reported capacity constraints. The separate branch-only workflow uses the
+supported macOS 26 ARM64 pool and explicitly verifies `uname -m` before building.
+
+GitHub retains each ZIP for 14 days. Each ZIP contains the DMG and its SHA-256
+checksum. The checksums and `hdiutil verify` were executed on the native runners;
+the artifact storage download was blocked from this Linux environment, so no
+independent local checksum verification is claimed. These are ad-hoc-signed,
+non-notarized development builds, with no release or main-branch merge.
+
+To replace an older installed build, quit Dodaios with Command-Q, mount the new
+DMG, replace the copy in Applications and launch that copy. Select Français under
+Settings > Language & app > Interface Language. Agents is directly available in
+the sidebar; no stored agents or conversations are deleted by these changes.

@@ -1,6 +1,8 @@
+.github/workflows/french-arm64-build.yml
 .github/workflows/minimal-macos-build.yml
 docs/french-localization-files.txt
 docs/french-localization.md
+docs/minimal-assistant.md
 dodaios/agent_chat/control_types.py
 dodaios/appshot/card_actions.py
 dodaios/appshot/effect.py

@@ -168,3 +168,10 @@ constructing the AppKit image from PNG bytes. On macOS, `webview.start()` receiv
 no raw PNG override, so it cannot undo that normalization. Linux and Windows
 keep their existing icon paths. The runtime and packaging icon regression tests
 pass together (19 passed, one platform-specific skip on Linux).
+
+### French and visible Agents in the replacement installers
+
+The replacement builds integrate French into this same minimal branch and
+restore an explicit Agents navigation button. See [French localization](french-localization.md)
+for verified Intel and Apple Silicon downloads, regression results and the file
+list. The earlier installers linked above predate the French integration.
