@@ -28,7 +28,7 @@ class _FakeBrain:
 
     def set_reply_language(self, lang: str) -> None:
         code = lang.strip().lower()
-        if code not in {"auto", "de", "en", "es", "pt"}:
+        if code not in {"auto", "de", "en", "es", "pt", "fr"}:
             raise ValueError(f"unknown reply language {lang!r}")
         self._reply_language = code
 
@@ -61,15 +61,16 @@ def test_get_returns_current_language_and_options(server: WebServer) -> None:
         assert resp.status_code == 200
         body = resp.json()
         assert body["language"] == "auto"
-        assert set(body["options"]) == {"auto", "de", "en", "es", "pt"}
+        assert set(body["options"]) == {"auto", "de", "en", "es", "pt", "fr"}
 
 
-def test_put_switches_live_brain(server: WebServer) -> None:
+@pytest.mark.parametrize("language", ["en", "fr"])
+def test_put_switches_live_brain(server: WebServer, language: str) -> None:
     with TestClient(server.app) as client:
-        resp = client.put("/api/settings/reply-language", json={"language": "en"})
+        resp = client.put("/api/settings/reply-language", json={"language": language})
         assert resp.status_code == 200
-        assert resp.json()["language"] == "en"
-        assert server.app.state.brain.reply_language == "en"
+        assert resp.json()["language"] == language
+        assert server.app.state.brain.reply_language == language
 
 
 def test_put_persists_by_default(server: WebServer, _no_toml_write: list[str]) -> None:

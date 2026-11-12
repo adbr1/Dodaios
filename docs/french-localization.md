@@ -77,3 +77,31 @@ placeholder. Prefer concise infinitives for actions, sentence case, consistent
 vouvoiement and standard technical names (API, CLI, Git, prompt, plugin, Skill).
 Rebuild the frontend before inspecting the desktop UI: it serves `dist`, not the
 source tree. Do not commit generated frontend files.
+
+## Verification results for the installer source
+
+- Full frontend suite: 781 files, 7,608 tests passed. Follow-up regression runs
+  after the final locale and reply-language edits passed 282 tests, then 61
+  selection/navigation/parity tests after the last wording refinements.
+- TypeScript and Vite production compilation passed. The artifact checker passed
+  against the newly built `dist`.
+- Chromium checks against that production build and API fixtures selected French,
+  retained it across reload, found no horizontal page overflow at 1440 and
+  960 px, opened Agents through the restored button and opened its French
+  creation dialog. No page JavaScript errors were reported. These fixtures do
+  not establish a live provider connection or actual agent execution.
+- Backend catalog, language resolution, UI persistence, native menus and WebView
+  profile regression group: 262 passed, one platform-specific skip.
+- Agent roster/create/configure/archive and team API group: 78 passed.
+- macOS icon, privacy localization and frozen-bundle validation tests: 95 passed,
+  one platform-specific skip locally. Reply/settings route group: 10 passed.
+  Legacy voice acknowledgement/failure groups: 102 passed. Counts overlap.
+- Ruff passed on the changed Python files apart from two pre-existing findings
+  in `desktop_app.py`: E501 at line 525 and S112 at line 1047. New helpers pass
+  formatting checks. Documentation checks and `git diff --check` passed.
+- Native macOS installer builds for source commit
+  `e6528e270bbafd13c8f5e6b2949ca23157232428` are tracked at
+  <https://github.com/adbr1/Dodaios/actions/runs/43204113111>.
+
+The exact file list for this repair is in
+[french-localization-files.txt](french-localization-files.txt).

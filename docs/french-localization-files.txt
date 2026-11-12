@@ -75,6 +75,7 @@ dodaios/ui/web/frontend/vite.config.ts
 dodaios/ui/web/settings_routes.py
 dodaios/ui/window_watchdog.py
 scripts/ci/check_french_frontend.py
+tests/integration/test_settings_routes.py
 tests/integration/test_ui_language_route.py
 tests/unit/brain/test_reply_language.py
 tests/unit/brain/test_self_mod_tools.py
