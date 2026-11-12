@@ -1,3 +1,4 @@
+import { uiLocale } from "@/lib/boardInsights";
 /**
  * The "don't remember" switch. One endless conversation has no temporary
  * chat, so this is where the user stops background learning for a while:
@@ -42,7 +43,7 @@ export function LearningPause({ onError }: { onError: (message: string) => void 
       ? t("vault.pause_until_resumed")
       : until
         ? fill(t("vault.pause_until"), {
-            time: new Date(until).toLocaleString(undefined, { weekday: "short", hour: "2-digit", minute: "2-digit" }),
+            time: new Date(until).toLocaleString(uiLocale(), { weekday: "short", hour: "2-digit", minute: "2-digit" }),
           })
         : "";
 

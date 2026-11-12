@@ -1,3 +1,4 @@
+import { uiLocale } from "@/lib/boardInsights";
 import { Suspense, lazy, useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import {
   ArrowLeft,
@@ -165,7 +166,7 @@ const SORTS: readonly GallerySort[] = ["newest", "oldest", "name"];
 /** The stage's timestamp — what tells two same-named artifacts apart. */
 function formatWhen(seconds: number): string {
   if (!seconds) return "";
-  return new Date(seconds * 1000).toLocaleString(undefined, {
+  return new Date(seconds * 1000).toLocaleString(uiLocale(), {
     month: "short",
     day: "numeric",
     hour: "2-digit",

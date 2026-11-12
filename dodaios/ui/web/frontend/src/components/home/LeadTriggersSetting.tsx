@@ -1,3 +1,4 @@
+import { uiLocale } from "@/lib/boardInsights";
 import { useEffect, useState } from "react";
 import { Radio } from "lucide-react";
 
@@ -75,7 +76,7 @@ export function LeadTriggersSetting() {
   const producerState = (p: Producer) => ((PRODUCER_STATES as readonly string[]).includes(p.state) ? p.state : "waiting");
   const producerNote = (p: Producer) => {
     if (p.last_error) return t(`home.triggers.error_${p.last_error === "reconnect" || p.last_error === "rate_limited" ? p.last_error : "other"}`);
-    return p.last_event_at ? t("home.triggers.last_event").replace("{time}", new Date(p.last_event_at * 1000).toLocaleString()) : t("home.triggers.no_event");
+    return p.last_event_at ? t("home.triggers.last_event").replace("{time}", new Date(p.last_event_at * 1000).toLocaleString(uiLocale())) : t("home.triggers.no_event");
   };
   return (
     <section className="space-y-1.5" data-testid="lead-triggers">

@@ -260,6 +260,45 @@ _LABELS: dict[str, dict[str, str]] = {
         "done": "Concluído — enviar ao assistente",  # i18n-allow: product UI string
         "placeholder": "Escreve um texto",  # i18n-allow: product UI string
     },
+    "fr": {
+        mm.AREA: (
+            "Zone : tracez un rectangle ou cliquez sur une fenêtre. "
+            "Espace capture tout l’écran"
+        ),
+        "keep": "Ajustez la zone avant la capture (Entrée pour capturer)",  # i18n-allow: product UI
+        mm.MOVE: "Sélectionner et déplacer",  # i18n-allow: product UI
+        mm.RECT: "Rectangle",  # i18n-allow: product UI
+        mm.FILLED: "Rectangle plein",  # i18n-allow: product UI
+        mm.ELLIPSE: "Ellipse",  # i18n-allow: product UI
+        mm.LINE: "Ligne",  # i18n-allow: product UI
+        mm.ARROW: "Flèche",  # i18n-allow: product UI
+        mm.TEXT: "Texte",  # i18n-allow: product UI
+        mm.REDACT: "Pixelliser / flouter",  # i18n-allow: product UI
+        mm.SPOTLIGHT: "Mettre en évidence",  # i18n-allow: product UI
+        mm.COUNTER: "Étape numérotée",  # i18n-allow: product UI
+        mm.PEN: "Dessiner",  # i18n-allow: product UI
+        mm.HIGHLIGHT: "Surligneur",  # i18n-allow: product UI
+        mm.BACKGROUND: "Arrière-plan",  # i18n-allow: product UI
+        "arrow_tapered": "Effilée",  # i18n-allow: product UI
+        "arrow_classic": "Classique",  # i18n-allow: product UI
+        "arrow_double": "Deux pointes",  # i18n-allow: product UI
+        "text_plain": "Simple",  # i18n-allow: product UI
+        "text_label": "Étiquette",  # i18n-allow: product UI
+        "text_outline": "Contour",  # i18n-allow: product UI
+        "redact_pixelate": "Pixelliser",  # i18n-allow: product UI
+        "redact_blur": "Flouter",  # i18n-allow: product UI
+        "background_off": "Sans arrière-plan",  # i18n-allow: product UI
+        "color": "Couleur",  # i18n-allow: product UI
+        "width": "Taille (1–5, molette)",  # i18n-allow: product UI
+        "undo": "Annuler",  # i18n-allow: product UI
+        "redo": "Rétablir",  # i18n-allow: product UI
+        "copy": "Copier",  # i18n-allow: product UI
+        "save": "Enregistrer dans Téléchargements",  # i18n-allow: product UI
+        "edit": "Ouvrir dans l’éditeur",  # i18n-allow: product UI
+        "cancel": "Annuler",  # i18n-allow: product UI
+        "done": "Terminer — envoyer à l’assistant",  # i18n-allow: product UI
+        "placeholder": "Saisir du texte",  # i18n-allow: product UI
+    },
 }
 
 #: Shortcut shown in each tooltip.

@@ -292,7 +292,9 @@
           }
         }
         var status = document.querySelector("#jarvis-boot-splash .sub");
-        if (status && updating) status.textContent = "Updating interface…";
+        var boot = window.__DODAIOS_STARTUP_TEXTS;
+        if (status && boot) status.textContent = updating ? boot.updating : recovering ? boot.restoring : boot.starting;
+        else if (status && updating) status.textContent = "Updating interface…";
         else if (status && recovering) status.textContent = "Restoring interface…";
       })();
     </script>
@@ -465,7 +467,7 @@
           var sub = document.createElement("div");
           sub.className = "sub";
           sub.setAttribute("role", "status");
-          sub.textContent = "Updating interface…";
+          sub.textContent = window.__DODAIOS_STARTUP_TEXTS ? window.__DODAIOS_STARTUP_TEXTS.updating : "Updating interface…";
           group.appendChild(mark);
           group.appendChild(name);
           group.appendChild(progress);
@@ -488,34 +490,7 @@
         }
 
         function texts() {
-          var lang = (navigator.language || "en").slice(0, 2);
-          if (lang === "de") {
-            return {
-              title: "Die Oberfläche wurde nicht geladen.", // i18n-allow
-              why: "Grund: ", // i18n-allow
-              unknown: "Kein Grund gemeldet.", // i18n-allow
-              hint: "Das passiert, wenn ein Bereich beim Öffnen abstürzt oder die Oberfläche neu gebaut wird, während das Fenster offen ist.", // i18n-allow
-              button: "Neu laden", // i18n-allow
-            };
-          }
-          if (lang === "zh") {
-            return {
-              title: "界面没有加载出来。", // i18n-allow
-              why: "原因：", // i18n-allow
-              unknown: "没有报告原因。", // i18n-allow
-              hint: "当某个区域打开时崩溃，或在窗口打开期间界面被重新构建时，就会出现这种情况。", // i18n-allow
-              button: "重新加载", // i18n-allow
-            };
-          }
-          if (lang === "es") {
-            return {
-              title: "La interfaz no se cargó.", // i18n-allow
-              why: "Motivo: ", // i18n-allow
-              unknown: "No se informó ningún motivo.", // i18n-allow
-              hint: "Ocurre cuando una sección falla al abrirse o la interfaz se reconstruye con la ventana abierta.", // i18n-allow
-              button: "Recargar", // i18n-allow
-            };
-          }
+          if (window.__DODAIOS_STARTUP_TEXTS) return window.__DODAIOS_STARTUP_TEXTS;
           return {
             title: "The interface did not load.",
             why: "Reason: ",

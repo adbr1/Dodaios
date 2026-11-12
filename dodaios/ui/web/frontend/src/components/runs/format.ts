@@ -11,9 +11,11 @@
 import { useUiLanguage } from "@/i18n";
 
 export function localeForUiLanguage(language: string): string {
+  language = language.toLowerCase().split("-")[0];
   if (language === "de") return "de-DE";
   if (language === "es") return "es-ES";
   if (language === "zh") return "zh-CN";
+  if (language === "fr") return "fr-FR";
   if (language === "pt") return "pt-PT";
   return "en-US";
 }

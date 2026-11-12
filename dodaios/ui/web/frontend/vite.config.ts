@@ -71,7 +71,7 @@ function materialIconAssets(): Plugin {
 }
 
 const MOBILE_STRINGS_ID = "virtual:mobile-strings";
-const MOBILE_LANGUAGES = ["en", "de", "es", "pt", "zh"] as const;
+const MOBILE_LANGUAGES = ["en", "de", "es", "pt", "zh", "fr"] as const;
 
 /**
  * The phone companion's strings, inlined from the `mobile.app` namespace of
@@ -103,8 +103,37 @@ function mobileStrings(): Plugin {
   };
 }
 
+/** Share catalog copy with the splash and recovery page before React can load. */
+function startupStrings(): Plugin {
+  return {
+    name: "startup-strings",
+    transformIndexHtml: {
+      order: "pre",
+      handler() {
+        const tables = Object.fromEntries(MOBILE_LANGUAGES.map((lang) => {
+          const locale = JSON.parse(fs.readFileSync(
+            path.resolve(__dirname, `src/i18n/locales/${lang}.json`), "utf8",
+          )) as { startup: Record<string, string> };
+          return [lang, locale.startup];
+        }));
+        return [{ tag: "script", injectTo: "head-prepend", children: `
+          (function () {
+            var tables = ${JSON.stringify(tables).replace(/</g, "\\u003c")};
+            var lang = "en";
+            try { lang = localStorage.getItem("jarvis.ui.language") || navigator.language || "en"; }
+            catch (e) { lang = navigator.language || "en"; }
+            lang = lang.toLowerCase().split("-")[0];
+            window.__DODAIOS_STARTUP_TEXTS = tables[lang] || tables.en;
+            if (lang === "fr") document.documentElement.lang = "fr-FR";
+          })();
+        ` }];
+      },
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [safePublication(__dirname), react(), materialIconAssets(), missingNameGate(__dirname), notices.plugin, mobileStrings()],
+  plugins: [safePublication(__dirname), react(), materialIconAssets(), missingNameGate(__dirname), notices.plugin, mobileStrings(), startupStrings()],
   worker: { plugins: () => [notices.workerPlugin()] },
   // The society's figures are binary glTF; Vite serves them as fingerprinted
   // assets (docs/agent-society/character-pipeline.md §4.2).

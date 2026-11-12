@@ -125,9 +125,8 @@ export const NAV_GROUPS: NavItem[][] = [
   [{ id: "chats", labelKey: "nav.chats", icon: ChatIcon }],
   // 1) Workspace — what the user builds with and reads back.
   [
-    // Named agents are no longer part of the product (2026-11-11): the
-    // assistant and the Agentic IDE are. The id stays until its page goes.
-    { id: "agents", labelKey: "nav.agents", icon: AgentsIcon, retired: true },
+    // Agent management remains available independently of the retired game UI.
+    { id: "agents", labelKey: "nav.agents", icon: AgentsIcon },
     // Built for you — what the self-building loop made on its own, why, and
     // the one place to keep, undo or pause it (docs/self-build.md).
     {

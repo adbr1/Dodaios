@@ -556,9 +556,9 @@ def test_portuguese_pin_wins() -> None:
     assert resolve_output_language(" PT ", None, "What time is it?") == "pt"
 
 
-def test_french_speech_pin_does_not_become_a_catalog_language() -> None:
-    """French can be pinned for speech, but system phrases stay English."""
-    assert resolve_output_language("fr", None, "Quel temps fait-il ?") == DEFAULT_LOCALE
+def test_french_pin_uses_the_french_catalog() -> None:
+    """French replies use translated system phrases."""
+    assert resolve_output_language("fr", None, "Quel temps fait-il ?") == "fr"
 
 
 @pytest.mark.parametrize("previous", ["de", "en", "es"])

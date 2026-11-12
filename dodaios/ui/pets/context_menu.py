@@ -13,6 +13,11 @@ LABELS = {
     "es": ("Abrir la aplicación", "Restablecer posición", "Ocultar mascota"),
     "pt": ("Abrir a aplicação", "Repor posição", "Ocultar pet"),  # i18n-allow
     "zh": ("打开应用", "重置位置", "隐藏宠物"),
+    "fr": [
+    "Ouvrir l’application",
+    "Réinitialiser la position",
+    "Masquer le compagnon"
+],  # i18n-allow: product UI
 }
 
 

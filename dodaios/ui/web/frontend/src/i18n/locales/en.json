@@ -4173,6 +4173,10 @@
       "pt": {
         "label": "Português (Portugal)",
         "description": "Use European Portuguese for every label and button."
+      },
+      "fr": {
+        "label": "Français",
+        "description": "Use French (France) for every label and button."
       }
     },
     "reply_options": {
@@ -4180,7 +4184,8 @@
       "en": "{name} answers in English.",
       "de": "{name} antwortet auf Deutsch.",
       "es": "{name} responde en español.",
-      "pt": "{name} responde em português."
+      "pt": "{name} responde em português.",
+      "fr": "{name} replies in French."
     },
     "stt_options": {
       "auto": "Detect the language you speak automatically.",
@@ -7916,7 +7921,9 @@
     "getting_ready": "Getting ready",
     "tokens_hint": "Input {input} tokens new to the model ({cached} more reused from the cache) · output {output} tokens",
     "open_beside": "Show in the side panel",
-    "open_file_beside": "Show {file} in the side panel"
+    "open_file_beside": "Show {file} in the side panel",
+    "more_lines": "… {count} more lines",
+    "message_from": "Message from {sender}"
   },
   "work_trace": {
     "tool_failed": "A tool action failed",
@@ -11622,5 +11629,15 @@
     "class_other": "recent failures",
     "finding_label": "Health check",
     "open_keys": "Open API keys"
+  },
+  "startup": {
+    "starting": "Starting up…",
+    "updating": "Updating interface…",
+    "restoring": "Restoring interface…",
+    "title": "The interface did not load.",
+    "why": "Reason: ",
+    "unknown": "No reason was reported.",
+    "hint": "This happens when a section fails to open, or the interface is rebuilt while the window is open.",
+    "button": "Reload"
   }
 }

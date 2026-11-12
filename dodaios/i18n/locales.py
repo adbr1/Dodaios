@@ -19,7 +19,7 @@ Portuguese, and every failure path picked its own fallback.
 from __future__ import annotations
 
 #: Languages with a full set of translated system phrases (the catalog files).
-SUPPORTED_LOCALES: tuple[str, ...] = ("de", "en", "es", "pt")
+SUPPORTED_LOCALES: tuple[str, ...] = ("de", "en", "es", "pt", "fr")
 
 #: The language of every system phrase when the person's language has no
 #: translation or cannot be told. One constant for every layer.
@@ -31,6 +31,7 @@ SUPPORTED_LANGUAGE_NAMES: dict[str, str] = {
     "en": "English",
     "es": "Spanish",
     "pt": "European Portuguese",
+    "fr": "French",
 }
 
 #: English names of languages the detector can recognise but that have no
@@ -40,7 +41,6 @@ OTHER_LANGUAGE_NAMES: dict[str, str] = {
     "cs": "Czech",
     "el": "Greek",
     "fa": "Persian",
-    "fr": "French",
     "he": "Hebrew",
     "hi": "Hindi",
     "hu": "Hungarian",

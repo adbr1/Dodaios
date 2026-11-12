@@ -995,6 +995,7 @@ function ErrorLine({ text }: { text: string }) {
 
 /** One item of the conversation, drawn by its kind. */
 function ItemView({ item, tone }: { item: TimelineItem } & Pick<ThreadTurnProps, "tone">) {
+  const t = useT();
   if (item.type === "user") return <UserBubble item={item} />;
   if (item.type === "turn") return <ThreadTurn turn={item} tone={tone} />;
   if (item.type === "error") return <ErrorLine text={item.text} />;
@@ -1002,7 +1003,7 @@ function ItemView({ item, tone }: { item: TimelineItem } & Pick<ThreadTurnProps,
     return <p className="text-center text-xs text-muted-foreground">{item.agentName ? `${item.agentName}: ` : ""}{item.text}</p>;
   }
   return <div className="rounded-xl border border-border px-3 py-2 text-sm">
-    <p className="mb-1 text-xs text-muted-foreground">Message from {item.message.sender_name}</p>
+    <p className="mb-1 text-xs text-muted-foreground">{t("thread_turn.message_from").replace("{sender}", item.message.sender_name)}</p>
     <div className={PROSE}><ChatMarkdown text={item.message.text} /></div>
   </div>;
 }

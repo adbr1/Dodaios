@@ -1,3 +1,4 @@
+import { uiLocale } from "@/lib/boardInsights";
 import { useMemo, useState } from "react";
 import { AlertTriangle, Mic, Search, Trash2 } from "lucide-react";
 import { ViewHeader } from "@/views/ChatsView";
@@ -402,5 +403,5 @@ function dayLabel(t: (key: string) => string, key: string): string {
   const parsed = new Date(`${key}T00:00:00`);
   return Number.isNaN(parsed.getTime())
     ? key
-    : parsed.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+    : parsed.toLocaleDateString(uiLocale(), { year: "numeric", month: "long", day: "numeric" });
 }

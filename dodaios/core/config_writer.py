@@ -1131,7 +1131,7 @@ def set_proactivity(level: str, *, path: Path = DEFAULT_CONFIG_FILE) -> None:
 def set_ui_language(name: str, *, path: Path = DEFAULT_CONFIG_FILE) -> None:
     """Persist the interface (display) language in ``[ui] language``.
 
-    ``name`` is one of ``en`` | ``de`` | ``es`` | ``pt`` | ``zh`` (validated by the
+    ``name`` is one of ``en`` | ``de`` | ``es`` | ``pt`` | ``zh`` | ``fr`` (validated by the
     caller).
     This is the backend home for what used to be a frontend-only localStorage value,
     so a voice command / the Control API can change the visible app language and

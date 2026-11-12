@@ -31,6 +31,7 @@ NOTICE_DETAIL_CHARS = 160
 NOTICE_LABELS: dict[str, dict[str, str]] = {
     "task_done": {
         "en": "Task done",
+        "fr": "Tâche terminée",  # i18n-allow: product UI
         "de": "Aufgabe erledigt",  # i18n-allow
         "es": "Tarea hecha",  # i18n-allow
         "zh": "任务已完成",  # i18n-allow
@@ -38,6 +39,7 @@ NOTICE_LABELS: dict[str, dict[str, str]] = {
     },
     "task_failed": {
         "en": "Task failed",
+        "fr": "Échec de la tâche",  # i18n-allow: product UI
         "de": "Aufgabe fehlgeschlagen",  # i18n-allow
         "es": "La tarea falló",  # i18n-allow
         "zh": "任务失败",  # i18n-allow
@@ -45,6 +47,7 @@ NOTICE_LABELS: dict[str, dict[str, str]] = {
     },
     "result_ready": {
         "en": "{name} is done",
+        "fr": "{name} a terminé",  # i18n-allow: product UI
         "de": "{name} ist fertig",  # i18n-allow
         "es": "{name} terminó",  # i18n-allow
         "zh": "{name} 已完成",  # i18n-allow
@@ -52,6 +55,7 @@ NOTICE_LABELS: dict[str, dict[str, str]] = {
     },
     "result_failed": {
         "en": "{name} failed",
+        "fr": "{name} a échoué",  # i18n-allow: product UI
         "de": "{name} ist gescheitert",  # i18n-allow
         "es": "{name} falló",  # i18n-allow
         "zh": "{name} 失败了",  # i18n-allow
@@ -59,6 +63,7 @@ NOTICE_LABELS: dict[str, dict[str, str]] = {
     },
     "agent": {
         "en": "The agent",
+        "fr": "L’agent",  # i18n-allow: product UI
         "de": "Der Agent",  # i18n-allow
         "es": "El agente",  # i18n-allow
         "zh": "智能体",  # i18n-allow
@@ -66,6 +71,7 @@ NOTICE_LABELS: dict[str, dict[str, str]] = {
     },
     "no_answer": {
         "en": "Dodaios could not answer",
+        "fr": "Dodaios n’a pas pu répondre",  # i18n-allow: product UI
         "de": "Dodaios konnte nicht antworten",  # i18n-allow
         "es": "Dodaios no pudo responder",  # i18n-allow
         "zh": "Dodaios 无法回答",  # i18n-allow

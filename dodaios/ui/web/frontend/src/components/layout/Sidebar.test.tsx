@@ -22,6 +22,23 @@ import { sectionPrefetch } from "@/lib/sectionPrefetch";
 import { SECTION_PREFETCH_DELAY_MS } from "@/hooks/useSectionPrefetch";
 
 test.each([SIDEBAR_DEFAULT_WIDTH, SIDEBAR_RAIL_WIDTH])(
+  "keeps agent management reachable without the game UI (width=%s)",
+  (width) => {
+    useEventStore.setState({ activeSection: "chats" });
+    try {
+      renderSidebar(width);
+      fireEvent.click(screen.getByTestId("sidebar-shortcut-agents"));
+      expect(useEventStore.getState().activeSection).toBe("agents");
+      expect(screen.getByTestId("sidebar-shortcut-agents").getAttribute("aria-current")).toBe("page");
+      expect(LISTED_NAV_GROUPS.flat().some((item) => item.id === "agents")).toBe(true);
+    } finally {
+      cleanup();
+      useEventStore.setState({ activeSection: "chats" });
+    }
+  },
+);
+
+test.each([SIDEBAR_DEFAULT_WIDTH, SIDEBAR_RAIL_WIDTH])(
   "sidebar intent warms a destination without navigating (width=%s)",
   (width) => {
     vi.useFakeTimers();
@@ -767,6 +784,7 @@ describe("the sidebar holds the two places and nothing else", () => {
       if ((SETTINGS_HUB_IDS as readonly string[]).includes(item.id)) continue;
       if (item.id === "chats") expect(screen.getByTestId("sidebar-mode-dodaios")).toBeTruthy();
       else if (item.id === "agentic-ide") expect(screen.getByTestId("sidebar-mode-ide")).toBeTruthy();
+      else if (item.id === "agents") expect(screen.getByTestId("sidebar-shortcut-agents")).toBeTruthy();
       // Every other page is a link inside the Settings hub.
       else expect(hubLinks.has(item.id), item.id).toBe(true);
     }

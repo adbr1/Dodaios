@@ -1,0 +1,603 @@
+{
+  "brain": {
+    "cli_failure": {
+      "cause": "La commande a échoué : {cause}",
+      "code": "La commande a échoué avec le code de sortie {code}.",
+      "bare": "La commande a échoué."
+    },
+    "nothing_found": "Je n’ai rien trouvé à ce sujet.",
+    "navigation_ack": "Ouverture de {label}.",
+    "evidence_unfulfilled": "Impossible de récupérer ces informations : l’appel d’outil n’a pas abouti. Demandez-moi de réessayer.",
+    "evidence_domain_labels": {
+      "calendar": "votre agenda",
+      "email": "votre boîte de réception",
+      "tasks": "vos tâches",
+      "repos": "vos dépôts",
+      "deployments": "vos déploiements",
+      "cloud": "votre facturation cloud",
+      "activity": "votre historique d’activité"
+    },
+    "evidence_unfulfilled_domain": "Impossible de consulter {label} : l’accès n’a pas abouti. Demandez-moi de réessayer.",
+    "action_unfulfilled": {
+      "society_propose_change": "La routine n’a pas été créée. L’enregistrement n’a pas été exécuté.",
+      "society-create-routine": "La routine n’a pas été créée. L’enregistrement n’a pas été exécuté.",
+      "contact-upsert": "Ce contact n’a pas encore été enregistré. Redonnez-moi ses coordonnées pour que je l’ajoute.",
+      "wiki-ingest": "Je ne l’ai pas encore noté dans votre wiki. Répétez-le pour que je l’enregistre.",
+      "run_shell": "Cette action n’a pas été effectuée : la commande n’a jamais été exécutée. Répétez votre demande pour que je m’en charge."
+    },
+    "lang_switch_confirm_session": "Je répondrai en français pour cette session. L’enregistrement permanent n’a pas fonctionné.",
+    "subagent_switch_confirm": "Votre sous-agent utilisera {p} dès la prochaine mission.",
+    "subagent_switch_fail": {
+      "missing_credential": "{p} n’est pas connecté. Configurez-le avant de changer de fournisseur.",
+      "other": "Impossible de configurer le sous-agent sur {p}."
+    },
+    "provider_switch_confirm": "Votre modèle principal utilise désormais {p}.",
+    "provider_switch_fail": {
+      "missing_credential": "{p} n’est pas configuré. Ajoutez sa clé avant de changer de fournisseur.",
+      "subagent_only": "{p} peut uniquement servir de sous-agent, pas de modèle principal.",
+      "other": "Impossible de configurer le modèle principal sur {p}."
+    },
+    "cancel_confirm": "{n} tâches en cours arrêtées.",
+    "cancel_none": "Aucune tâche en cours à arrêter.",
+    "depth_confirm": {
+      "deep": "Je prendrai désormais le temps d’approfondir mon raisonnement.",
+      "fast": "Je privilégierai désormais les réponses rapides."
+    },
+    "provider_down": [
+      "Je ne peux pas joindre mon modèle pour le moment. Un instant.",
+      "Mon modèle est momentanément indisponible. Je réessaierai bientôt.",
+      "La connexion au modèle ne fonctionne pas. Je ne peux pas répondre pour le moment."
+    ],
+    "provider_down_cause": {
+      "missing_key": "Aucune clé API n’est configurée pour mon modèle. Ajoutez-en une dans Clés API pour continuer.",
+      "bad_key": "La clé API enregistrée est refusée. Elle est peut-être invalide ou expirée. Remplacez-la dans Clés API.",
+      "account_blocked": "Le compte du fournisseur est bloqué. Les crédits sont peut-être épuisés ou une limite a été atteinte. Vérifiez votre compte chez le fournisseur.",
+      "rate_limit": "Le fournisseur limite les requêtes. Patientez un instant, puis renouvelez votre demande.",
+      "invalid_model": "Le fournisseur n’accepte pas le modèle configuré. Vérifiez le modèle sélectionné dans les paramètres.",
+      "context_overflow": "Cette demande dépasse la fenêtre de contexte du modèle. Choisissez un modèle avec un contexte plus grand ou commencez une nouvelle conversation.",
+      "local_context": "Le contexte de votre modèle local est trop court pour cette demande. Augmentez-le sur le serveur local et rechargez le modèle. Dans Modèles locaux, utilisez les réglages du modèle. Le journal indique la taille nécessaire.",
+      "unreachable": "Impossible de joindre le fournisseur, probablement en raison du réseau ou d’une panne du service. Réessayez dans un instant.",
+      "vision_unsupported": "Aucun assistant connecté ne peut analyser les images actuellement. La clé est présente, mais la vision n’est pas prise en charge. Choisissez un fournisseur compatible dans Clés API."
+    },
+    "mid_answer_error": "Les étapes ont été exécutées, mais une erreur est survenue pendant la rédaction de la réponse. Réessayez dans un instant.",
+    "action_failed": "J’ai reconnu l’action, mais je n’ai pas pu l’exécuter.",
+    "lang_switch_confirm": "Je répondrai désormais en français.",
+    "lang_switch_confirm_auto": "Je m’adapterai désormais à la langue que vous utilisez.",
+    "ack": {
+      "final_markers": "Terminé.",
+      "generic_ack": [
+        "D’accord, un instant.",
+        "Un instant.",
+        "Je m’en occupe.",
+        "Je travaille dessus.",
+        "D’accord, patientez un instant."
+      ],
+      "shell_ack": [
+        "Un instant, je vérifie.",
+        "Je regarde cela.",
+        "Vérification en cours.",
+        "Un instant pour vérifier.",
+        "Je jette un œil."
+      ],
+      "cli_service_ack": [
+        "Je consulte {service}.",
+        "Un instant, je vérifie {service}.",
+        "Je récupère les informations sur {service}.",
+        "Vérification de {service}.",
+        "Je regarde dans {service}."
+      ],
+      "harness_ack": [
+        "Compris, je m’en occupe.",
+        "D’accord, je prends cette tâche en charge.",
+        "Compris, je travaille dessus.",
+        "Je m’en charge maintenant.",
+        "Bien sûr, un instant."
+      ],
+      "search_topic_ack": [
+        "Je recherche {topic}.",
+        "Recherche rapide sur {topic}.",
+        "Un instant, je me renseigne sur {topic}.",
+        "Je regarde ce que je trouve sur {topic}."
+      ],
+      "search_generic_ack": [
+        "Je lance la recherche.",
+        "Je recherche ces informations.",
+        "Un instant, je regarde.",
+        "Je rassemble les informations."
+      ],
+      "multi_spawn_ack": [
+        "Je lance {n} tâches en parallèle.",
+        "Je prends en charge ces {n} tâches à la fois.",
+        "{n} tâches en parallèle, je m’en occupe."
+      ],
+      "open_app_ack": [
+        "J’ouvre {app}.",
+        "Un instant, je lance {app}.",
+        "Démarrage de {app}."
+      ],
+      "run_skill_ack": [
+        "Je lance {skill}.",
+        "Un instant, je démarre {skill}.",
+        "Exécution de {skill}."
+      ],
+      "gmail_read_ack": [
+        "Je consulte vos e-mails.",
+        "Un instant, j’ouvre votre boîte de réception.",
+        "Je regarde vos messages.",
+        "Je consulte votre boîte de réception."
+      ],
+      "calendar_ack": [
+        "Je consulte votre agenda.",
+        "Un instant, je regarde votre emploi du temps.",
+        "Je vérifie vos rendez-vous.",
+        "Je regarde votre agenda."
+      ],
+      "remember_ack": [
+        "Je le note.",
+        "Compris, je m’en souviendrai.",
+        "J’enregistre cette information."
+      ],
+      "verify_ack": [
+        "Je vérifie.",
+        "Un instant, je teste.",
+        "Je vais vérifier cela."
+      ],
+      "server_ack": [
+        "Je démarre le serveur.",
+        "Un instant, je lance le serveur.",
+        "Démarrage du serveur."
+      ],
+      "set_config_ack": [
+        "Je mets ce réglage à jour.",
+        "Un instant, je modifie cela.",
+        "Modification en cours."
+      ]
+    },
+    "action_honesty": {
+      "action_not_started_phrases": "Je n’ai lancé aucune action pour cette demande et n’ai donc pas encore de résultat. Renouvelez votre demande."
+    },
+    "local_action_gate": {
+      "unsupported_response": "Je n’ai pas encore d’outil pour cela. Indiquez le MCP ou l’intégration à utiliser pour que je puisse apprendre."
+    }
+  },
+  "tool_loop": {
+    "anti_silence": "Je ne peux pas effectuer cette action : l’outil nécessaire n’est pas disponible.",
+    "meta_debug_ack": "Compris. Quel résultat attendiez-vous précisément ?"
+  },
+  "output_filter": {
+    "fallback": "Une erreur est survenue."
+  },
+  "speech": {
+    "brain_unavailable": "Je ne peux joindre aucun de mes modèles pour le moment. Vérifiez les crédits de vos fournisseurs.",
+    "stt_unavailable": "Je n’ai pas compris. Pouvez-vous répéter ?",
+    "realtime_unavailable": "La connexion Realtime est indisponible. Cette session bascule vers le mode vocal Pipeline classique.",
+    "timeout_tool_stall": "Impossible d’obtenir une réponse à temps : un outil attendu n’a pas répondu.",
+    "timeout_no_answer": "Je n’ai pas pu obtenir cette information pour le moment.",
+    "provider_refused": {
+      "plan": "Votre abonnement {provider} ne propose pas cette connexion vocale.",
+      "key": "La clé vocale de {provider} a été refusée. Vérifiez-la dans les paramètres vocaux.",
+      "credit": "Les crédits vocaux de {provider} sont épuisés. Rechargez votre compte chez le fournisseur.",
+      "busy": "Le service vocal de {provider} est occupé et a refusé l’appel.",
+      "unreachable": "Impossible de joindre le service vocal de {provider}.",
+      "rejected": "{provider} a refusé la configuration vocale. Vérifiez la voix et le modèle dans les paramètres vocaux.",
+      "continued_pipeline": "L’appel se poursuit en mode vocal Pipeline classique.",
+      "continued_realtime": "L’appel se poursuit sur une autre connexion vocale.",
+      "ended": "Cet appel ne peut pas continuer pour le moment."
+    },
+    "brief": {
+      "today": "Aujourd’hui : {items}.",
+      "item_at": "à {time}, {text}",
+      "more": "et {count} autres.",
+      "open": "À faire : {items}.",
+      "nothing": "À ma connaissance, rien n’est prévu aujourd’hui."
+    }
+  },
+  "missions": {
+    "announcer": {
+      "failed_prefix": "La mission a échoué.",
+      "reason_label": "Raison",
+      "cancelled": "Mission annulée.",
+      "timed_out": "Le délai de la mission est dépassé."
+    },
+    "readback": {
+      "failure_reason": {
+        "critic_loop_exhausted": "Trois tentatives n’ont pas suffi.",
+        "critic_rejected": "La validation n’a pas abouti.",
+        "task_error": "L’agent a interrompu son travail.",
+        "attempts_timed_out": "La durée maximale a été atteinte.",
+        "review_time_budget_exhausted": "Le délai de vérification est dépassé. Un résultat partiel est disponible.",
+        "budget_exceeded": "Le budget maximal a été atteint.",
+        "decompose_failed": "Impossible de décomposer la tâche.",
+        "crash_recovery": "Une ancienne mission a été nettoyée.",
+        "interrupted": "Une mission en cours a été interrompue. Les résultats partiels sont disponibles.",
+        "empty_diff": "Aucun fichier n’a été écrit.",
+        "critic_unavailable": "L’agent de vérification a planté. Le travail est conservé dans le worktree.",
+        "worktree_setup_failed": "Impossible de créer un espace de travail.",
+        "checkpoint_missing": "La progression enregistrée est introuvable. Impossible de continuer.",
+        "git_missing": "{agents} nécessite Git, installé et disponible dans le PATH.",
+        "git_not_a_repository": "{agents} nécessite un dépôt Git cloné. Utilisez l’installateur Git plutôt qu’une archive ZIP.",
+        "source_checkout_unavailable": "Cette tâche de {agent} nécessite le code source, absent de cette installation.",
+        "provider_auth": "La connexion au fournisseur d’IA est invalide ou expirée.",
+        "provider_quota": "Le quota du fournisseur d’IA est épuisé.",
+        "provider_unreachable": "Le fournisseur d’IA est momentanément injoignable.",
+        "worker_timeout": "L’agent a atteint sa durée maximale d’exécution."
+      },
+      "empty_summary": "Tâche terminée.",
+      "unknown_reason": "erreur inconnue",
+      "no_tool_call": "Cette action n’a pas été effectuée : aucun outil n’a été appelé.",
+      "capacity_wait_phrases": {
+        "provider_quota": "La capacité de {provider} est épuisée pour le moment.",
+        "provider_auth": "La connexion à {provider} a expiré.",
+        "provider_unavailable": "{provider} est indisponible pour le moment.",
+        "paid_cap_reached": "Le budget de cette mission pour {provider} est atteint.",
+        "paid_daily_cap_reached": "La limite quotidienne d’utilisation automatique de {provider} est atteinte.",
+        "paid_consent_revoked": "L’utilisation automatique de {provider} a été désactivée.",
+        "saved": "La progression a été enregistrée.",
+        "progress": "{done} étapes sur {total} terminées, {open} restantes.",
+        "progress_single": "La tâche reste à terminer.",
+        "file": "1 fichier enregistré.",
+        "files": "{files} fichiers enregistrés.",
+        "wait": "La mission attend que la capacité soit de nouveau disponible.",
+        "wait_auth": "La mission attend votre reconnexion.",
+        "paid": "L’API payante ne sera utilisée qu’avec votre accord explicite dans Artefacts."
+      },
+      "provider_fallback_name": "fournisseur d’IA",
+      "default_target": "cette action"
+    },
+    "deliverable": {
+      "deliverable_templates": {
+        "one": "Terminé. {name} est enregistré dans les artefacts.",
+        "few": "Terminé. {count} fichiers enregistrés dans les artefacts : {joined}.",
+        "many": "Terminé. {count} fichiers enregistrés dans les artefacts."
+      },
+      "mission_completed_phrases": "Mission terminée.",
+      "delivered_templates": {
+        "one": "Terminé. {name} est enregistré dans les artefacts.",
+        "few": "Terminé. {count} fichiers enregistrés dans les artefacts : {joined}.",
+        "many": "Terminé. {count} fichiers enregistrés dans les artefacts."
+      }
+    }
+  },
+  "realtime": {
+    "local_output_failure": "Impossible de lire la réponse : la sortie audio a été déconnectée.",
+    "output_language_failure": "Impossible de produire une réponse fiable en français pour le moment.",
+    "handshake_failure": {
+      "timeout": "La connexion vocale a pris trop de temps. Elle a été interrompue.",
+      "unavailable": "Impossible d’établir la connexion vocale pour le moment.",
+      "rate_limited": "Le service vocal est occupé. Réessayez dans un instant.",
+      "no_credits": "Les crédits du service vocal sont épuisés. Rechargez votre compte chez le fournisseur.",
+      "not_offered": "Votre compte ne propose pas cette connexion vocale. Vérifiez votre abonnement ou choisissez un autre compte.",
+      "dropped": "La connexion vocale a été interrompue."
+    },
+    "public_fact_uncertainty": "Je n’ai pas pu vérifier cette information de façon fiable avec une source publique.",
+    "delegate_bridge_texts": [
+      "Je travaille toujours dessus.",
+      "Un instant, j’y suis presque.",
+      "Je m’en occupe toujours. Encore un instant.",
+      "Cela prend un peu de temps."
+    ],
+    "interrupt_ack_texts": [
+      "D’accord, j’ai arrêté.",
+      "D’accord, j’annule.",
+      "D’accord, j’abandonne cette action."
+    ],
+    "local_voice": {
+      "refusals": {
+        "not_set_up": "La voix locale n’est pas encore configurée. Lancez son installation depuis la fiche Voix locale dans les paramètres.",
+        "loading": "La voix locale se charge encore ({percent} %). Sa progression est visible dans les paramètres.",
+        "failed": "La voix locale n’a pas pu démarrer. La fiche Voix locale dans les paramètres en indique la raison."
+      }
+    }
+  },
+  "self_mod": {
+    "short_error": {
+      "pre_validate": "la vérification préalable a refusé cette valeur",
+      "reload": "le test de rechargement a refusé la nouvelle valeur",
+      "rollback": "la restauration a échoué ; une intervention manuelle est nécessaire",
+      "unexpected": "une erreur inattendue est survenue pendant la modification du réglage"
+    }
+  },
+  "voice": {
+    "action": {
+      "phrases": {
+        "cu_done": "Terminé.",
+        "lookup_unspoken": "J’ai obtenu les informations, mais je n’ai pas pu les lire à voix haute. Souhaitez-vous que je réessaie ?",
+        "lookup_empty": "Je n’ai rien trouvé à ce sujet.",
+        "cu_done_detail": "Terminé. {detail}",
+        "cu_failed": "L’action à l’écran a échoué.",
+        "cu_failed_reason": "L’action à l’écran a échoué : {error}",
+        "cu_crashed": "Une erreur est survenue pendant l’action à l’écran.",
+        "cu_exit_gave_up": "J’ai essayé d’effectuer cette action à l’écran, sans y parvenir.",
+        "cu_exit_no_view": "Je ne voyais pas correctement l’écran et me suis arrêté.",
+        "cu_exit_confused": "La réponse de contrôle de l’écran était invalide. Je me suis arrêté.",
+        "cu_exit_no_provider": "Aucun modèle capable de voir l’écran n’est disponible. Vérifiez vos clés API et vos crédits dans les paramètres.",
+        "cu_exit_too_many_steps": "L’action nécessitait trop d’étapes à l’écran. Je me suis arrêté.",
+        "cu_exit_action_failed": "Une action à l’écran a échoué. Je me suis arrêté.",
+        "cu_exit_cancelled": "L’action à l’écran a été annulée.",
+        "cu_exit_needs_elevation": "La confirmation administrateur n’est pas arrivée. Je me suis arrêté.",
+        "cu_blocked_permission": "J’ai dû m’arrêter. {sentence}",
+        "cu_blocked_restart_hint": "J’ai dû m’arrêter : l’autorisation {permission} peut nécessiter de quitter puis de rouvrir Dodaios. Rouvrez l’application, puis réessayez.",
+        "cu_blocked_unavailable": "J’ai dû m’arrêter : Dodaios ne peut pas demander l’autorisation {permission} dans cette session.",
+        "cu_blocked_waiting": "J’ai dû m’arrêter : macOS vous demande l’autorisation {permission}. Répondez à la fenêtre système, puis réessayez.",
+        "cu_blocked_dialog": "J’ai dû m’arrêter : une fenêtre système macOS est ouverte. Répondez-y vous-même, puis réessayez.",
+        "cu_blocked_restricted": "Une autorisation nécessaire est limitée par un profil ou un contrôle parental sur ce Mac. Cette restriction ne peut pas être modifiée depuis l’application.",
+        "cu_blocked_generic": "macOS nécessite une autorisation pour Dodaios. Accordez-la dans Réglages Système → Confidentialité et sécurité, puis réessayez.",
+        "cu_timeout": "L’action à l’écran a dépassé {secs} secondes et a été annulée.",
+        "open_app_launched": "Application lancée : {app}",
+        "open_app_launched_raised": "Application lancée et affichée au premier plan : {app}",
+        "open_app_not_found": "L’application « {app} » est introuvable.",
+        "cu_not_wired": "Le contrôle de l’écran est désactivé. Activez computer_use.enabled dans la configuration, puis redémarrez Dodaios.",
+        "cu_dispatch_ack": "Je m’en occupe à l’écran et vous préviens lorsque c’est terminé.",
+        "cu_awaiting_elevation": "Cette action nécessite les droits administrateur. Confirmez la demande de sécurité pour que je continue.",
+        "cu_awaiting_human": "Cette étape nécessite votre intervention. Connectez-vous ou terminez la vérification pour que je continue.",
+        "cost_cooldown": "Le budget quotidien est épuisé. Les nouvelles demandes reprendront à la fin de la période d’attente.",
+        "task_budget": "Le budget de tâches de cette conversation est dépassé.",
+        "daily_budget": "Le budget quotidien est dépassé.",
+        "tool_failed": "{tool} a échoué.",
+        "action_failed_generic": "Cette action n’a pas abouti.",
+        "stale_repeat_clarify": "Je viens de répondre à cette question. Que souhaitez-vous savoir précisément ?",
+        "action_failed_reason": "L’action a échoué : {reason}",
+        "delegate_no_brain": "Aucun modèle n’a répondu à cette demande.",
+        "delegate_no_result": "Aucun résultat vérifiable n’a été obtenu.",
+        "delegate_failed_internal": "Une erreur interne est survenue. L’action a été arrêtée.",
+        "actions_unavailable": "Les actions sont indisponibles pour le moment, mais nous pouvons continuer à discuter.",
+        "actions_not_requested": "Je n’ai rien lancé. Dites-moi ce que vous souhaitez faire.",
+        "skill_loaded_not_run": "Les instructions ont été chargées, mais pas encore exécutées.",
+        "action_timeout": "L’action a pris trop de temps et a été arrêtée.",
+        "spawn_failed_generic": "Impossible de démarrer l’agent en arrière-plan.",
+        "spawn_failed_reason": "Impossible de démarrer l’agent en arrière-plan : {reason}",
+        "spawn_no_runner": "Impossible de démarrer la tâche. Redémarrez Dodaios.",
+        "artifact_building": "Je crée « {title} » en arrière-plan et vous préviendrai lorsque ce sera prêt.",
+        "artifact_revising": "Je modifie « {title} » en arrière-plan et vous préviendrai lorsque ce sera prêt.",
+        "workflow_trigger_failed": "La routine {name} n’a pas pu démarrer. Nouvelle tentative à la prochaine échéance.",
+        "workflow_scheduler_stalled": "Vos routines programmées ne s’exécutent pas actuellement. Je continue d’essayer.",
+        "workflow_step_failed": "La routine {name} a été arrêtée après un blocage à {step}.",
+        "workflow_step_failed_reason": "La routine {name} a été arrêtée après un blocage à {step}. Raison : {reason}",
+        "workflow_step_ordinal": "l’étape {n}",
+        "workflow_unnamed": "sans nom",
+        "wiki_saving": "Enregistrement dans le wiki.",
+        "wiki_saved": "Enregistré dans le wiki.",
+        "wiki_saved_detail": "Enregistré dans le wiki : {detail}.",
+        "wiki_save_failed": "L’enregistrement dans le wiki a échoué.",
+        "wiki_save_failed_reason": "L’enregistrement dans le wiki a échoué : {reason}",
+        "wiki_nothing_to_save": "Je ne sais pas quoi noter dans le wiki. Répétez le contenu à enregistrer.",
+        "ide_prompt_sent": "Envoyé à {terminal}.",
+        "ide_prompt_sent_files": "Envoyé à {terminal}, avec {count} fichiers joints.",
+        "ide_prompt_sent_one_file": "Envoyé à {terminal}, avec {file}.",
+        "ide_terminal_not_running": "{terminal} ne fonctionne pas actuellement ({status}). Rien n’a été envoyé.",
+        "ide_prompt_sent_many": "Envoyé à {names}.",
+        "ide_prompt_sent_partial": "Envoyé à {names}. Impossible de joindre {failed}.",
+        "ide_prompt_sent_nobody": "Impossible de joindre {failed}. Aucune exécution n’a donc démarré.",
+        "ide_prompt_typed_not_started": "Le texte est seulement saisi dans le champ de {names}, sans avoir été envoyé.",
+        "ide_names_pair": "{head} et {last}",
+        "ide_terminals_spawned_one": "{names} est ouvert.",
+        "ide_terminals_spawned": "{count} nouveaux terminaux : {names}.",
+        "ide_terminals_briefing_queued": "La tâche leur sera transmise dès que les terminaux seront prêts.",
+        "ide_terminals_closed": "{count} terminaux fermés : {names}.",
+        "ide_terminals_none_to_close": "Aucun terminal ouvert ne correspond.",
+        "ide_terminals_spawned_capped": "Seuls {count} terminaux ont pu être ouverts : {names}.",
+        "ide_terminals_open_failed": "Impossible d’ouvrir un terminal.",
+        "ide_terminal_kind_unclear": "J’ai entendu {spoken}. Voulez-vous dire {first} ou {second} ?",
+        "ide_terminal_kind_unclear_one": "J’ai entendu {spoken}. Voulez-vous dire {first} ?",
+        "ide_terminal_kind_unknown": "Aucun terminal de type {name}. Types disponibles : {available}.",
+        "ide_terminals_opened_workspace": "J’ai ouvert {folder} : {names}.",
+        "ide_terminal_clarify_one": "J’ai entendu {spoken}. Voulez-vous dire {name} ?",
+        "ide_terminal_clarify_many": "J’ai entendu {spoken}. Voulez-vous dire {names} ?",
+        "ide_prompt_already_delivered": "{name} a reçu la tâche à {time}. Elle ne sera pas envoyée deux fois.",
+        "join_or": " ou ",
+        "join_and": " et ",
+        "ide_terminal_clarify_also": "J’ai aussi entendu {spoken}. Voulez-vous dire {names} ?",
+        "ide_terminal_who_else": "J’ai seulement identifié {names}. Qui d’autre souhaitez-vous solliciter ?",
+        "ide_terminals_nowhere": "Aucun espace de travail ouvert ou récent. Choisissez un dossier dans l’IDE agentique."
+      },
+      "permission_cause_templates": "Dodaios ne dispose pas actuellement de l’autorisation {name}.",
+      "permission_cause_names": {
+        "microphone": "Microphone",
+        "accessibility": "Accessibilité",
+        "screen_recording": "Enregistrement de l’écran",
+        "input_monitoring": "Surveillance de l’entrée",
+        "automation": "Automatisation",
+        "event_posting": "Accessibilité"
+      }
+    },
+    "tool_confirmation": {
+      "tool_questions": {
+        "gmail": "Voulez-vous envoyer cet e-mail ? Dites oui ou non.",
+        "gmail_rest": "Voulez-vous envoyer cet e-mail ? Dites oui ou non.",
+        "call-contact": "Voulez-vous passer cet appel ? Dites oui ou non."
+      },
+      "generic_question": "Voulez-vous effectuer cette action ? Dites oui ou non.",
+      "impact_questions": {
+        "destructive": "Attention, cette commande supprimera des éléments ({commands}). Voulez-vous l’exécuter ? Dites oui ou non.",
+        "modify": "Cette commande modifiera des éléments sur l’ordinateur ({commands}). Voulez-vous l’exécuter ? Dites oui ou non.",
+        "read": "Cette commande lit uniquement des données ({commands}). Voulez-vous l’exécuter ? Dites oui ou non."
+      },
+      "outcome": {
+        "done": "Terminé.",
+        "vetoed": "D’accord, je laisse en l’état.",
+        "timeout": "Aucune réponse entendue. Je laisse en l’état.",
+        "failed": "L’action a échoué.",
+        "unclear": "Répondez simplement oui ou non.",
+        "unavailable": "Cette action nécessite une autorisation, mais personne ne peut la donner ici. Elle n’a donc pas été effectuée."
+      }
+    },
+    "echo_confirmation": {
+      "value_words": {
+        "on": "activé",
+        "off": "désactivé",
+        "empty": "vide"
+      },
+      "echo_templates": "{label} passe de {old} à {new}. Confirmez-vous ?",
+      "echo_templates_sensitive": "Nouvelle valeur pour {label}. Confirmez-vous ?",
+      "outcome_words": {
+        "new_value": "la nouvelle valeur",
+        "old_value": "la valeur précédente",
+        "validation_failed": "échec de la validation",
+        "unknown_error": "erreur inconnue"
+      },
+      "outcome_templates": {
+        "safe_applied": "{label} est désormais défini sur {new}.",
+        "applied": "{label} est désormais défini sur {new}.",
+        "applied_restart": "{label} est désormais défini sur {new}. Redémarrez Dodaios pour appliquer le changement.",
+        "validate_failed": "Modification impossible : {err}. {old} est conservé.",
+        "rollback": "Impossible d’enregistrer. L’état précédent a été restauré. {err}",
+        "vetoed": "D’accord, je laisse en l’état.",
+        "timeout": "Aucune réponse entendue. Modification annulée, {old} est conservé."
+      }
+    },
+    "parked_results": {
+      "anchor_pools": [
+        "Concernant votre demande précédente sur {topic} : {result}",
+        "Revenons à {topic} : {result}",
+        "Voici le résultat pour {topic} : {result}"
+      ],
+      "anchor_pools_no_topic": [
+        "Concernant votre demande précédente : {result}",
+        "Voici le résultat de votre demande précédente : {result}"
+      ]
+    },
+    "config_readback": {
+      "phrases": {
+        "applied": "{label} est désormais défini sur {value}.",
+        "applied_restart": "{label} est désormais défini sur {value}. Redémarrez Dodaios pour appliquer ce réglage.",
+        "refused": "Ce réglage ne peut pas être modifié à la voix. Modifiez-le directement dans les paramètres.",
+        "unknown_setting": "Je ne peux pas modifier ce réglage.",
+        "invalid_value": "Cette valeur n’est pas valide. Le réglage reste inchangé.",
+        "rollback": "Impossible d’enregistrer. L’état précédent a été restauré."
+      }
+    }
+  },
+  "tools": {
+    "delegate": {
+      "ack": "{name} s’en occupe. Je vous tiendrai au courant.",
+      "quiet_ack": "{name} s’en occupe.",
+      "error_ack": "{name} s’en occupe. Je signalerai tout blocage.",
+      "queued": "La tâche pour {name} est enregistrée. Son démarrage n’est pas encore confirmé.",
+      "no_agent": "Aucun agent nommé {target}.",
+      "ask_agent": "Voulez-vous dire {names} ?",
+      "or": " ou ",
+      "available": "Agents disponibles : {names}.",
+      "no_fit": "Aucun de vos agents ne convient à cette tâche.",
+      "refused": "{name} ne peut pas prendre cette tâche : {reason}.",
+      "not_ready": "Les agents ne sont pas encore prêts.",
+      "status_idle": "{name} n’a aucune tâche en cours.",
+      "status_working": "{name} travaille sur : {text}",
+      "status_last": "{name} : dernier événement {kind}, {text}",
+      "roster": "Vos agents : {names}.",
+      "empty_roster": "Vous n’avez pas encore d’agents dans votre équipe."
+    },
+    "dispatch_review": {
+      "voice_holding_phrases": "Je prends un instant pour travailler sur cette tâche.",
+      "voice_outcome_templates": {
+        "success": "Terminé : {summary}",
+        "cap_fired": "Voici mon meilleur résultat, avec une réserve : {top_issue}",
+        "fail": "Cette approche ne fonctionne pas : {summary}",
+        "precheck_fail": "La demande est trop courte ou imprécise. Réessayez avec davantage de contexte."
+      },
+      "voice_fallback_fillers": {
+        "success": "terminé",
+        "cap_fired": "quelques points mineurs à vérifier",
+        "fail": "un défaut d’architecture"
+      }
+    }
+  },
+  "telephony": {
+    "default_greetings": "Bonjour, comment puis-je vous aider ?",
+    "named_greetings": "Bonjour, je suis {name}. Comment puis-je vous aider ?",
+    "fallback_phrases": "Je n’ai pas compris. Pouvez-vous répéter ?"
+  },
+  "cu": {
+    "indicator": {
+      "esc_hints": "Échap pour annuler"
+    }
+  },
+  "clis": {
+    "capability": {
+      "refusal_hints": {
+        "installed": " {name} est installé mais pas encore connecté. Demandez-moi de le configurer.",
+        "catalog": " Le catalogue CLI propose {name} pour cela. Je peux vous aider à le configurer."
+      }
+    }
+  },
+  "ui": {
+    "desktop": {
+      "conductor_news_phrases": {
+        "failing": "La tâche programmée {name} rencontre des erreurs.",
+        "recovered": "La tâche programmée {name} fonctionne de nouveau."
+      }
+    },
+    "webview": {
+      "global.quitConfirmation": "Voulez-vous vraiment quitter ?",
+      "global.ok": "OK",
+      "global.quit": "Quitter",
+      "global.cancel": "Annuler",
+      "global.saveFile": "Enregistrer le fichier",
+      "cocoa.menu.about": "À propos de",
+      "cocoa.menu.services": "Services",
+      "cocoa.menu.view": "Présentation",
+      "cocoa.menu.edit": "Édition",
+      "cocoa.menu.hide": "Masquer",
+      "cocoa.menu.hideOthers": "Masquer les autres",
+      "cocoa.menu.showAll": "Tout afficher",
+      "cocoa.menu.quit": "Quitter",
+      "cocoa.menu.fullscreen": "Passer en plein écran",
+      "cocoa.menu.cut": "Couper",
+      "cocoa.menu.copy": "Copier",
+      "cocoa.menu.paste": "Coller",
+      "cocoa.menu.selectAll": "Tout sélectionner",
+      "windows.fileFilter.allFiles": "Tous les fichiers",
+      "windows.fileFilter.otherFiles": "Autres types de fichiers",
+      "linux.openFile": "Ouvrir un fichier",
+      "linux.openFiles": "Ouvrir des fichiers",
+      "linux.openFolder": "Ouvrir un dossier"
+    }
+  },
+  "harness": {
+    "step_progress": "Étape {done} sur {total} terminée."
+  },
+  "self_build": {
+    "proposal": {
+      "memory": "Retenir cette correction récurrente : « {request} ».",
+      "skill": "Une Skill pour cette demande récurrente : « {request} ».",
+      "routine": "Une routine pour anticiper cette demande : « {request} ».",
+      "agent": "Un agent spécialisé pour « {request} »."
+    },
+    "case": {
+      "counted": "Demande formulée {count} fois sur {days} jours distincts."
+    },
+    "code": {
+      "title": "Corriger le ticket #{number} dans {repo} : {title}",
+      "case": "Le ticket #{number} dans {repo} semble adapté à un agent sans surveillance ({signal}). L’agent travaillerait avec votre abonnement pendant votre absence, dans son propre worktree et sa propre branche, puis exécuterait les tests ({tests}). Le résultat serait une pull request fermant le ticket, à l’état de brouillon sauf si vous avez autorisé la fusion automatique pour ce dépôt. {url}"
+    }
+  },
+  "notify": {
+    "reminder_title": "Rappel",
+    "trigger_ask": "Un événement {source} correspond à votre règle « {policy} » : {summary}. Voulez-vous que je m’en occupe ?",
+    "an_agent": "Un agent",
+    "needs_you_title": "{agent} a besoin de vous",
+    "needs_you_body": "Ouvrez la conversation pour répondre.",
+    "approval_title": "{agent} attend votre accord",
+    "approval_body": "Autorisez ou refusez dans l’application.",
+    "finished_title": "{agent} a terminé",
+    "finished_body": "Le résultat est disponible dans sa conversation.",
+    "telegram_approval": "{agent} souhaite exécuter {tool} : {summary}",
+    "telegram_allow": "Autoriser",
+    "telegram_deny": "Refuser",
+    "telegram_allowed": "Autorisé depuis Telegram.",
+    "telegram_denied": "Refusé depuis Telegram.",
+    "telegram_settled": "Décision prise dans l’application.",
+    "telegram_expired": "Cette demande n’est plus en attente.",
+    "call_ring_title": "{agent} appelle pour une décision urgente",
+    "call_opening_approval": "{agent} attend une décision : {summary}. Dites oui pour autoriser, non pour refuser ou plus tard pour laisser la demande en attente.",
+    "call_opening_question": "{agent} a une question urgente : {summary}. La réponse recommandée est {answer}. Dites oui pour la choisir ou plus tard pour laisser la question en attente.",
+    "call_opening_notice": "{agent} a besoin de vous pour une urgence : {summary}. Ouvrez l’application pour répondre.",
+    "call_reprompt": "Je n’ai pas compris. Oui, non ou plus tard ?",
+    "call_done_allowed": "L’action est autorisée. Au revoir.",
+    "call_done_denied": "L’action est refusée. Au revoir.",
+    "call_done_answered": "La réponse recommandée a été choisie. Au revoir.",
+    "call_done_open": "La demande reste en attente dans l’application. Au revoir.",
+    "call_done_gone": "Cette décision n’est plus en attente. Au revoir.",
+    "test_title": "Les notifications sont activées",
+    "test_body": "Voici comment Dodaios vous avertit lorsque l’application est en arrière-plan."
+  }
+}

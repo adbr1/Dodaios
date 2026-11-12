@@ -426,6 +426,20 @@ _TEXTS: dict[str, dict[str, str]] = {
         "button": "Recarregar",
         "retrying": "A tentar de novo…",
     },
+    "fr": {
+        "title": "La fenêtre est restée vide.",
+        "backend_dead": (
+            "Dodaios fonctionne, mais le service qui affiche cette fenêtre s’est arrêté. "
+            "Redémarrez l’application."
+        ),
+        "backend_silent": (
+            "Dodaios est occupé et ne répond pas encore à cette fenêtre. "
+            "Elle se rechargera automatiquement dès qu’il répondra."
+        ),
+        "view_empty": "Dodaios répond, mais la page de cette fenêtre n’a pas pu se charger.",
+        "button": "Recharger",
+        "retrying": "Nouvelle tentative…"
+    },  # i18n-allow: product UI
 }
 
 

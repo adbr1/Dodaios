@@ -3,6 +3,7 @@ import { afterEach, describe, expect, it } from "vitest";
 import de from "./locales/de.json";
 import es from "./locales/es.json";
 import zh from "./locales/zh.json";
+import fr from "./locales/fr.json";
 import pt from "./locales/pt.json";
 import { loadUiLocale, translate, useI18nStore } from "./index";
 
@@ -16,6 +17,7 @@ describe("on-demand interface dictionaries", () => {
     ["es", es.common.loading],
     ["zh", zh.common.loading],
     ["pt", pt.common.loading],
+    ["fr", fr.common.loading],
   ] as const)("resolves %s before showing its translated labels", async (lang, loading) => {
     const first = loadUiLocale(lang);
     expect(loadUiLocale(lang)).toBe(first);

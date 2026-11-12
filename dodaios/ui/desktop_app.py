@@ -6499,6 +6499,8 @@ class DesktopApp:
         # Read by ``_begin_quit_from_close``: a force-exit backstop armed at the
         # X only makes sense while a real window loop is tearing down.
         self._webview_running = True
+        from dodaios.ui.native_localization import webview_localization
+
         try:
             webview.start(
                 func=self._inject_token,
@@ -6508,6 +6510,7 @@ class DesktopApp:
                 private_mode=storage_dir is None,
                 storage_path=str(storage_dir) if storage_dir is not None else None,
                 icon=self._native_window_icon(),
+                localization=webview_localization(self.cfg.ui.language),
             )
         except webview.WebViewException as exc:
             # Not swallowed: the exception is handed to the degrade path, which

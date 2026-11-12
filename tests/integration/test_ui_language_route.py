@@ -42,7 +42,7 @@ def test_get_returns_current_ui_language(ctx) -> None:
     tc, _, _ = ctx
     body = tc.get("/api/settings/ui-language").json()
     assert body["language"] == "en"
-    assert set(body["options"]) == {"en", "de", "es", "pt", "zh"}
+    assert set(body["options"]) == {"en", "de", "es", "pt", "zh", "fr"}
 
 
 def test_put_persists_and_broadcasts(ctx) -> None:
@@ -76,4 +76,17 @@ def test_put_accepts_european_portuguese(ctx) -> None:
 
 def test_put_rejects_unknown_language(ctx) -> None:
     tc, _, _ = ctx
-    assert tc.put("/api/settings/ui-language", json={"language": "fr"}).status_code == 400
+    assert tc.put("/api/settings/ui-language", json={"language": "xx"}).status_code == 400
+
+
+def test_french_survives_config_reload_and_client_reopen(ctx) -> None:
+    tc, config_file, captured = ctx
+    res = tc.put("/api/settings/ui-language", json={"language": "fr"})
+    assert res.status_code == 200, res.text
+    assert res.json()["persisted"] is True
+    assert 'language = "fr"' in config_file.read_text(encoding="utf-8")
+    # A newly loaded boot configuration must retain the choice, not reset it.
+    tc.app.state.config = cfg_mod.load_config()
+    assert tc.app.state.config.ui.language == "fr"
+    assert tc.get("/api/settings/ui-language").json()["language"] == "fr"
+    assert any(ev.language == "fr" for ev in captured)

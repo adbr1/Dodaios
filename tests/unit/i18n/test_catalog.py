@@ -66,7 +66,7 @@ def test_catalogs_have_the_same_keys_shapes_and_placeholders(code: str) -> None:
             assert set(_PLACEHOLDER.findall(mine)) == set(_PLACEHOLDER.findall(translated)), key
 
 
-@pytest.mark.parametrize("lang", ["tr", "fr", "", None, "auto", "xx-YY"])
+@pytest.mark.parametrize("lang", ["tr", "it", "", None, "auto", "xx-YY"])
 def test_a_language_without_translations_reads_english(lang: object) -> None:
     assert phrase_locale(lang) == "en"
     for key in keys():

@@ -19,7 +19,7 @@ import { SidebarModeSwitch, type SidebarMode } from "@/components/layout/Sidebar
 import { useQuickSwitchSettings } from "@/store/quickSwitchSettings";
 import { useAppInstance } from "@/hooks/useAppInstance";
 import { usePublishIdentity } from "@/hooks/usePublishIdentity";
-import { ArtifactsIcon, CaptureIcon, ExtensionsIcon, MarketplaceIcon, SpeechIcon } from "@/components/icons/sectionIcons";
+import { AgentsIcon, ArtifactsIcon, CaptureIcon, ExtensionsIcon, MarketplaceIcon, SpeechIcon } from "@/components/icons/sectionIcons";
 import { SidebarStatus } from "@/components/layout/SidebarStatus";
 import { useQuickSwitcher } from "@/store/quickSwitcher";
 import { startNewTextChat } from "@/lib/newChat";
@@ -292,6 +292,14 @@ export function Sidebar({
           onPick={pickMode}
           status={voiceMark}
         />
+        <button type="button" data-testid="sidebar-shortcut-agents" data-tour="nav-agents"
+          aria-label={t("nav.agents")} title={t("nav.agents")}
+          aria-current={active === "agents" ? "page" : undefined}
+          onClick={() => setActive("agents")}
+          className={cn(rowClass, railed && "h-9 w-9 justify-center px-0", active === "agents" && "bg-secondary text-foreground-strong")}>
+          <AgentsIcon aria-hidden strokeWidth={1.75} className="h-[18px] w-[18px] shrink-0" />
+          {!railed && <span className="min-w-0 flex-1 truncate text-left">{t("nav.agents")}</span>}
+        </button>
         {/* The state is spelled out only when it is news: starting, offline,
             listening. At rest the dot says "fine" on its own. */}
         {!railed && (voiceHasNews || devTag) && (

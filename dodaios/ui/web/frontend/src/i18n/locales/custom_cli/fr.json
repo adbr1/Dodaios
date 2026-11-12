@@ -1,0 +1,33 @@
+{
+  "custom_cli": {
+    "title_add": "Ajoutez votre propre CLI",
+    "title_edit": "Modifier cette CLI",
+    "description": "N'importe quel terminal interactif CLI peut s'exécuter dans un volet ici. Donnez-lui un nom et la commande qui le démarre, et il apparaît partout où les natifs le font.",
+    "close": "Fermer",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "save_add": "Ajouter CLI",
+    "saving": "Enregistrement…",
+    "name": "Nom",
+    "name_placeholder": "p. ex. Aide",
+    "name_hint": "Ce que vous verrez dans les cueilleurs et dire à haute voix.",
+    "command": "Commande",
+    "command_placeholder": "aide",
+    "command_hint": "Exactement ce que vous taperiez dans un terminal pour le démarrer.",
+    "command_shell_hint": "Cela s'exécute à travers un shell, car la commande est plus d'un programme. Le volet se ferme lorsque toute la ligne est terminée.",
+    "description_label": "Désignation",
+    "optional": "Facultatif",
+    "description_placeholder": "Une ligne expliquant ce qu'est cette CLI.",
+    "at_reference": "Écrire les fichiers supprimés en tant que path",
+    "at_reference_hint": "La plupart des CLI de codage modernes lisent path comme un fichier à ouvrir. Laissez cela et les chemins sont collés entre guillemets à la place.",
+    "threads_title": "Exécuter dans les threads (facultatif)",
+    "headless_command": "Commande sans tête",
+    "headless_command_hint": "Permet à cette CLI d'apparaître également en tant que fournisseur dans les threads IDE Agentic. Utilisez {prompt} là où le message va ; laissez-le de côté et le message est envoyé sur stdin. La réponse est ce que la commande imprime.",
+    "headless_resume": "Reprendre la commande",
+    "headless_resume_hint": "Utilisé pour les tours de suivi. {session} est remplacé par l'ID de conversation. Laissez vide pour commencer à nouveau chaque tour.",
+    "pick_logo": "Choisissez un logo",
+    "remove_logo": "Retirer le logo",
+    "remove_logo_short": "Supprimer",
+    "logo_label": "Logo"
+  }
+}

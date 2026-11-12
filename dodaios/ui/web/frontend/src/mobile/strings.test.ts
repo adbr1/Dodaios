@@ -5,10 +5,11 @@ import { floatToPcm16, mono, resample } from "./audio";
 
 describe("phone strings", () => {
   it("picks a known language from the phone's list, English otherwise", () => {
-    expect(pickLanguage(["fr-FR", "de-DE"])).toBe("de");
+    expect(pickLanguage(["fr-FR", "de-DE"])).toBe("fr");
     expect(pickLanguage(["pt-BR"])).toBe("pt");
     expect(pickLanguage(["zh-Hans-CN"])).toBe("zh");
-    expect(pickLanguage(["fr"])).toBe("en");
+    expect(pickLanguage(["fr"])).toBe("fr");
+    expect(pickLanguage(["xx-XX"])).toBe("en");
     expect(pickLanguage([])).toBe("en");
   });
 

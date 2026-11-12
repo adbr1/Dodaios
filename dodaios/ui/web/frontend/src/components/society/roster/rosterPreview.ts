@@ -190,7 +190,7 @@ export function formatRelative(ms: number, now: number, locale: string, nowLabel
     }
     return new Intl.NumberFormat(locale, { style: "unit", unit: stamp.unit, unitDisplay: "narrow" }).format(stamp.value);
   } catch {
-    if (stamp.unit === "date") return new Date(ms).toLocaleDateString();
+    if (stamp.unit === "date") return new Date(ms).toLocaleDateString(locale);
     return `${stamp.value}${stamp.unit[0]}`;
   }
 }

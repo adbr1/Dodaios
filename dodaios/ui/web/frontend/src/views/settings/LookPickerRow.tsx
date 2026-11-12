@@ -78,7 +78,7 @@ export function LookPickerRow() {
               </div>
               <span
                 className={cn(
-                  "max-w-full truncate text-sm font-medium",
+                  "max-w-full break-words text-center text-sm font-medium",
                   selected ? "text-foreground-strong" : "text-muted-foreground",
                 )}
               >

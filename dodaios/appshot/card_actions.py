@@ -117,6 +117,25 @@ _LABELS: dict[str, dict[str, str]] = {
         "text_copied": "Texto copiado",  # i18n-allow: product UI string
         "no_text": "Nenhum texto encontrado",  # i18n-allow: product UI string
     },
+    "fr": {
+        "edit": "Modifier",
+        "copy": "Copier",
+        "save": "Enregistrer",
+        "close": "Fermer",
+        "pin": "Garder à l’écran",
+        "unpin": "Détacher",
+        "copy_text": "Copier le texte",
+        "copied": "Copié",
+        "saved": "Enregistré dans Téléchargements",
+        "failed": "L’opération a échoué",
+        "no_access": "Accès au dossier Téléchargements refusé",
+        "no_access_mac": (
+            "Autorisez Téléchargements dans Confidentialité et sécurité > Fichiers et dossiers"
+        ),
+        "gone": "Cet élément n’est plus conservé",
+        "text_copied": "Texte copié",
+        "no_text": "Aucun texte trouvé"
+    },  # i18n-allow: product UI
 }
 
 
@@ -130,7 +149,8 @@ def card_rest_ms(config: Any) -> int:
     seconds = getattr(getattr(config, "appshot", None), "card_seconds", 6)
     try:
         value = int(seconds)
-    except (TypeError, ValueError):  # Invalid optional timing falls back to the standard card duration.
+    # Invalid optional timing falls back to the standard card duration.
+    except (TypeError, ValueError):
         value = 6
     return max(0, value) * 1000
 

@@ -1,3 +1,4 @@
+import { uiLocale } from "@/lib/boardInsights";
 /**
  * Living pages — artifacts the assistant keeps current through a routine
  * (backend: `dodaios/artifacts/living.py`, API `/api/living-pages`).
@@ -40,7 +41,7 @@ export function relativeTime(updatedAtS: number, nowMs: number, locale: string):
   try {
     return new Intl.RelativeTimeFormat(locale, { numeric: "auto" }).format(value, unit);
   } catch {
-    return new Date(updatedAtS * 1000).toLocaleString();
+    return new Date(updatedAtS * 1000).toLocaleString(uiLocale());
   }
 }
 

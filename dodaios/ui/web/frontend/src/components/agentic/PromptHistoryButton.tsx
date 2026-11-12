@@ -1,3 +1,4 @@
+import { uiLocale } from "@/lib/boardInsights";
 /** A pane-header button and on-demand browser for every prompt sent to that pane. */
 import { useEffect, useMemo, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
@@ -32,7 +33,7 @@ function fill(template: string, ...values: Array<string | number>): string {
 }
 
 function whenLabel(at: number): string {
-  return new Intl.DateTimeFormat(undefined, {
+  return new Intl.DateTimeFormat(uiLocale(), {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(new Date(at * 1000));

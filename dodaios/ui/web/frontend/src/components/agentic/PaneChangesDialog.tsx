@@ -1,3 +1,4 @@
+import { uiLocale } from "@/lib/boardInsights";
 /**
  * Review everything a pane's coding agent changed, in one place.
  *
@@ -239,7 +240,7 @@ export function PaneChangesDialog({
                     ? t("pane_review.description_folder")
                     : changes?.base
                       ? changes.sinceMs > 0
-                        ? fill(t("pane_review.description_since"), { time: new Date(changes.sinceMs).toLocaleString() })
+                        ? fill(t("pane_review.description_since"), { time: new Date(changes.sinceMs).toLocaleString(uiLocale()) })
                         : t("pane_review.description_pane")
                       : t("pane_review.description_uncommitted")}
                 </span>

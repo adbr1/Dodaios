@@ -1,12 +1,12 @@
 /**
- * The phone app's strings: the `mobile.app` namespace of the five locale files,
+ * The phone app's strings: the `mobile.app` namespace of the interface locale files,
  * picked by the phone's language, English when a key is missing.
  */
 import strings from "virtual:mobile-strings";
 
-export type PhoneLanguage = "en" | "de" | "es" | "pt" | "zh";
+export type PhoneLanguage = "en" | "de" | "es" | "pt" | "zh" | "fr";
 
-const KNOWN: readonly PhoneLanguage[] = ["en", "de", "es", "pt", "zh"];
+const KNOWN: readonly PhoneLanguage[] = ["en", "de", "es", "pt", "zh", "fr"];
 
 export function pickLanguage(tags: readonly string[]): PhoneLanguage {
   for (const tag of tags) {

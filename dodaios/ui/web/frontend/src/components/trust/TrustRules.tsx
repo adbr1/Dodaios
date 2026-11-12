@@ -1,3 +1,4 @@
+import { uiLocale } from "@/lib/boardInsights";
 import { useCallback, useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -81,7 +82,7 @@ export function TrustRules() {
               <li key={rule.id} className="flex items-center gap-3 px-4 py-3" data-testid="trust-rule">
                 <div className="min-w-0 flex-1">
                   <p className="m-0 truncate text-sm text-foreground" title={rule.target || rule.tool}>{ruleSentence(rule, t)}</p>
-                  <p className="m-0 text-xs text-muted-foreground">{new Date(rule.created_ms).toLocaleDateString()}</p>
+                  <p className="m-0 text-xs text-muted-foreground">{new Date(rule.created_ms).toLocaleDateString(uiLocale())}</p>
                 </div>
                 <Button
                   variant="outline"

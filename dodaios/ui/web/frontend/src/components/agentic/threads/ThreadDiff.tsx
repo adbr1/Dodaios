@@ -42,7 +42,7 @@ export function DiffView({ files, onOpen, className }: {
           : <div key={i} className={cn("whitespace-pre px-3", line.kind === "add" && "diff-line-add", line.kind === "del" && "diff-line-del")}>
             <span aria-hidden className="mr-2 select-none opacity-60">{line.kind === "add" ? "+" : line.kind === "del" ? "-" : " "}</span>{line.text}
           </div>)}
-        {file.truncated > 0 && <div className="px-3 text-muted-foreground">… {file.truncated} more lines</div>}
+        {file.truncated > 0 && <div className="px-3 text-muted-foreground">{t("thread_turn.more_lines").replace("{count}", String(file.truncated))}</div>}
       </pre>
     </div>)}
   </div>;

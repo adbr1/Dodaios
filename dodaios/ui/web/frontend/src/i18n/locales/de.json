@@ -4173,6 +4173,10 @@
       "pt": {
         "label": "Português (Portugal)",
         "description": "Europäisches Portugiesisch für jede Beschriftung und Schaltfläche."
+      },
+      "fr": {
+        "label": "Français",
+        "description": "Französisch (Frankreich) für alle Beschriftungen und Schaltflächen verwenden."
       }
     },
     "reply_options": {
@@ -4180,7 +4184,8 @@
       "en": "{name} antwortet auf Englisch.",
       "de": "{name} antwortet auf Deutsch.",
       "es": "{name} antwortet auf Spanisch.",
-      "pt": "{name} antwortet auf Portugiesisch."
+      "pt": "{name} antwortet auf Portugiesisch.",
+      "fr": "{name} antwortet auf Französisch."
     },
     "stt_options": {
       "auto": "Erkennt automatisch, welche Sprache du sprichst.",
@@ -7916,7 +7921,9 @@
     "getting_ready": "Wird vorbereitet",
     "tokens_hint": "Eingabe {input} neue Tokens ({cached} weitere aus dem Cache wiederverwendet) · Ausgabe {output} Tokens",
     "open_beside": "In der Seitenleiste anzeigen",
-    "open_file_beside": "{file} in der Seitenleiste anzeigen"
+    "open_file_beside": "{file} in der Seitenleiste anzeigen",
+    "more_lines": "… {count} weitere Zeilen",
+    "message_from": "Nachricht von {sender}"
   },
   "work_trace": {
     "tool_failed": "Eine Tool-Aktion ist fehlgeschlagen",
@@ -11622,5 +11629,15 @@
     "class_other": "zuletzt Fehler",
     "finding_label": "Zustandsprüfung",
     "open_keys": "API-Schlüssel öffnen"
+  },
+  "startup": {
+    "starting": "Wird gestartet…",
+    "updating": "Oberfläche wird aktualisiert…",
+    "restoring": "Oberfläche wird wiederhergestellt…",
+    "title": "Die Oberfläche wurde nicht geladen.",
+    "why": "Grund: ",
+    "unknown": "Kein Grund gemeldet.",
+    "hint": "Das passiert, wenn ein Bereich beim Öffnen abstürzt oder die Oberfläche neu gebaut wird, während das Fenster offen ist.",
+    "button": "Neu laden"
   }
 }

@@ -108,7 +108,7 @@ def usage_descriptions() -> dict[str, str]:
     return dict(_USAGE_DESCRIPTIONS)
 
 
-# --- Localisation (German, Spanish and European Portuguese) ------------------
+# --- Localisation (German, Spanish, European Portuguese and French) ----------
 #
 # macOS shows the usage string of the user's preferred language when the bundle
 # is localised for it: ``Contents/Resources/<lang>.lproj/InfoPlist.strings``
@@ -125,7 +125,7 @@ def usage_descriptions() -> dict[str, str]:
 # (no Mac was available).
 
 #: Languages the bundles ship an Info.plist for; ``en`` is the base text.
-LOCALIZATIONS: tuple[str, ...] = ("en", "de", "es", "pt-PT")
+LOCALIZATIONS: tuple[str, ...] = ("en", "de", "es", "pt-PT", "fr-FR")
 
 #: ``CFBundleDevelopmentRegion``: the language of the base ``Info.plist`` strings.
 DEVELOPMENT_REGION = "en"
@@ -239,6 +239,39 @@ _LOCALIZED_USAGE_DESCRIPTIONS: dict[str, dict[str, str]] = {
             f"{PRODUCT_NAME} liga-se a dispositivos e servidores da tua rede "
             "local que configuraste, como um hub de casa inteligente ou um "
             "servidor de IA local."
+        ),
+    },
+    "fr-FR": {
+        "NSMicrophoneUsageDescription": (
+            f"{PRODUCT_NAME} utilise le microphone lorsque vous dictez, lui parlez "
+            "ou activez le mot d’activation."
+        ),
+        "NSScreenCaptureUsageDescription": (
+            f"{PRODUCT_NAME} capture l’écran lorsque vous lui demandez de le regarder "
+            "ou de contrôler une application pour vous."
+        ),
+        "NSAppleEventsUsageDescription": (
+            f"{PRODUCT_NAME} envoie des commandes à d’autres applications, comme un "
+            "lecteur de musique ou un terminal, lorsque la fonction utilisée le nécessite."
+        ),
+        "NSDesktopFolderUsageDescription": (
+            f"{PRODUCT_NAME} utilise les fichiers du dossier Bureau à votre demande."
+        ),
+        "NSDocumentsFolderUsageDescription": (
+            f"{PRODUCT_NAME} utilise les fichiers du dossier Documents à votre demande."
+        ),
+        "NSDownloadsFolderUsageDescription": (
+            f"{PRODUCT_NAME} utilise les fichiers du dossier Téléchargements à votre demande."
+        ),
+        "NSRemovableVolumesUsageDescription": (
+            f"{PRODUCT_NAME} utilise les fichiers des disques externes à votre demande."
+        ),
+        "NSNetworkVolumesUsageDescription": (
+            f"{PRODUCT_NAME} utilise les fichiers des disques réseau à votre demande."
+        ),
+        "NSLocalNetworkUsageDescription": (
+            f"{PRODUCT_NAME} se connecte aux appareils et serveurs du réseau local "
+            "que vous configurez, comme un système domotique ou un serveur d’IA local."
         ),
     },
 }

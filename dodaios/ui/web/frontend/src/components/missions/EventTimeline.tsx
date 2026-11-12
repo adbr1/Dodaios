@@ -1,3 +1,4 @@
+import { uiLocale } from "@/lib/boardInsights";
 /**
  * Vertical timeline of a selected mission's events.
  *
@@ -107,7 +108,7 @@ export function EventTimeline() {
 function formatTime(ms: number): string {
   try {
     const d = new Date(ms);
-    return d.toLocaleTimeString();
+    return d.toLocaleTimeString(uiLocale());
   } catch {
     return "—";
   }

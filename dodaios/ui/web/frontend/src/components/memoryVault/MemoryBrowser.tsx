@@ -1,3 +1,4 @@
+import { uiLocale } from "@/lib/boardInsights";
 /**
  * The memories list and the inspector beside it.
  *
@@ -68,7 +69,7 @@ export function formatDay(stamp: string | null | undefined): string {
   if (!stamp) return "";
   const date = new Date(stamp);
   if (Number.isNaN(date.getTime())) return stamp.slice(0, 10);
-  return date.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+  return date.toLocaleDateString(uiLocale(), { year: "numeric", month: "short", day: "numeric" });
 }
 
 export function MemoryBrowser({

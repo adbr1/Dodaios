@@ -1,0 +1,216 @@
+{
+  "self_build": {
+    "title": "Créé pour vous",
+    "loading": "Chargement des constructions…",
+    "status": {
+      "running": "Regarder",
+      "paused": "En pause",
+      "silent": "Apprentissage",
+      "off": "Désactivé",
+      "stopped": "Arrêté"
+    },
+    "pause": "Bâtiment de la Pause",
+    "resume": "Résumer le bâtiment",
+    "pause_hint": "Arrête de remarquer, de construire et de régler les épreuves. Tout construit jusqu’à ce qu’il reste.",
+    "settings": "Paramètres",
+    "stop_all": "Arrêtez tous les agents",
+    "stop_all_hint": "Arrête chaque agent, mission et routine en même temps, et arrête le bâtiment.",
+    "stop_confirm_title": "Arrêtez tous les agents maintenant ?",
+    "stop_confirm_body": "Les conversations, les missions et les routines s’arrêtent à la fois, et la construction s’arrête aussi. Rien n’est supprimé.",
+    "cancel": "Annuler",
+    "notes": {
+      "paused": "Le bâtiment est interrompu. Rien n’est remarqué, construit ou réglé jusqu’à ce que vous repreniez.",
+      "release": "Version",
+      "turn_on": "Ouvrir les paramètres"
+    },
+    "digest": {
+      "label": "Depuis hier",
+      "built": "{count} construit",
+      "proposed": "{count} proposé",
+      "kept": "{count} conservé",
+      "archived": "{count} archivé",
+      "undone": "{count} annulé",
+      "live": "{count} en direct maintenant",
+      "nothing": "Rien de nouveau."
+    },
+    "shelf": {
+      "waiting": "Attendre votre OK",
+      "waiting_hint": "Rien n’est construit jusqu’à ce que vous disiez oui.",
+      "kept": "Conservé",
+      "kept_hint": "J'ai gagné sa place, toujours irréalisable.",
+      "past": "Archivé",
+      "past_hint": "Les aides archivées peuvent être restaurées.",
+      "live": "Actif",
+      "live_hint": "A l’essai et étiqueté. L'effacer complètement."
+    },
+    "show_past": "Afficher {count}",
+    "hide_past": "Masquer",
+    "kind": {
+      "memory": "Mémoire",
+      "skill": "Skill",
+      "routine": "Routine",
+      "agent": "Agent",
+      "code": "Changement de code"
+    },
+    "state": {
+      "proposed": "Effectif proposé",
+      "building": "Bâtiment",
+      "proving": "Vérification",
+      "trial": "Au procès",
+      "kept": "Conservé",
+      "archived": "Archivé",
+      "undone": "Non exécuté",
+      "rejected": "Refusé",
+      "failed": "Échec"
+    },
+    "step": {
+      "proposed": "Remarqué",
+      "building": "Construit",
+      "proving": "Vérifié",
+      "trial": "Période d’essai",
+      "kept": "Conservé"
+    },
+    "trial_progress": "Jour {days} de {dayLimit} · {uses} de {useLimit} utilise",
+    "action": {
+      "accept": "Construisez-le",
+      "reject": "Pas ça.",
+      "keep": "Conserver",
+      "restore": "Rétablir",
+      "undo": "Annuler"
+    },
+    "no_builder": "{name} ne peut pas encore construire ce genre. Il reste une suggestion.",
+    "detail": {
+      "close": "Fermer",
+      "why": "Pourquoi",
+      "noticed": "Ce qu’il a remarqué",
+      "noticed_empty": "Aucune preuve n’a été enregistrée.",
+      "proof": "Comment ça a été vérifié",
+      "proof_passed": "Réussi",
+      "proof_failed": "N'a pas réussi",
+      "proof_none": "Pas encore vérifié.",
+      "made": "Ce qu’il a fait",
+      "made_none": "Rien n’existe encore.",
+      "open_link": "Ouvrir",
+      "open_thread": "Ouvrir le fil de codage",
+      "open_thread_title": "Lire chaque étape que l’agent de codage a prise dans l’IDE Agentic",
+      "use": "Utilisation",
+      "uses": "Utilisations de {count}",
+      "unused": "Pas encore utilisé.",
+      "cost": "Coût",
+      "cost_none": "Rien à facturer",
+      "tokens": "Jetons {count}",
+      "history": "Historique",
+      "note": "Note",
+      "opened": "ouvert",
+      "code_branch": "branche",
+      "code_pr": "Requête de tirage",
+      "code_draft": "avant-projet de demande de tirage"
+    },
+    "outcome": {
+      "used": "utilisés",
+      "accepted": "accepté tel qu’il est",
+      "corrected": "corrigé",
+      "ignored": "ignoré"
+    },
+    "error": {
+      "unavailable": "Le registre de construction n’est pas en cours d’exécution. Redémarrez l’application pour l’ouvrir.",
+      "action": "Cela n’a pas fonctionné: {detail}"
+    },
+    "hero": {
+      "silent_title": "{name} apprend à savoir comment vous travaillez.",
+      "silent_body": "Lorsque vous demandez la même chose encore et encore, {name} construit un petit helper qui le fait pour vous. Pour les premiers jours {days} il ne prend que des notes et demande avant qu’il ne construit quoi que ce soit. De {date} il peut essayer de petites choses seul, toujours avec défaire.",
+      "silent_body_nodate": "Lorsque vous demandez la même chose encore et encore, {name} construit un petit assistant qui le fait pour vous. Pour les premiers jours {days} il ne prend que des notes et demande avant qu’il ne construit quoi que ce soit.",
+      "running_title": "{name} surveille les répétitions.",
+      "running_body": "Lorsque vous demandez la même chose à différents jours, {name} construit la plus petite aide qui vous la retire, la vérifie et vous permet de l’essayer en un clic défaire.",
+      "ideas_title_one": "{name} a une idée de {count} pour vous.",
+      "ideas_title_other": "{name} a des idées {count} pour vous.",
+      "ideas_body": "Il a remarqué quelque chose que vous continuez à faire à la main. Jetez un oeil ci-dessous et dire oui ou non. Rien n’est construit sans vous.",
+      "paused_title": "Le bâtiment est interrompu.",
+      "paused_body": "{name} n’est pas en train de remarquer ou de construire quoi que ce soit en ce moment.",
+      "off_title": "Il n’y a plus de bâtiment pour vous.",
+      "off_body": "Allumez-le et {name} commence à remarquer ce que vous répétez. Vous décidez jusqu’où il peut aller.",
+      "stopped_title": "Tous les agents sont arrêtés.",
+      "stopped_body": "Les routines, les missions et le bâtiment restent arrêtés jusqu’à ce que vous les relâchez. Rien n’a été supprimé.",
+      "ring_day": "Jour {day} de {days}",
+      "ring_of_days": "de {days} jours",
+      "ring_live_one": "Aide {count} en cours d’exécution",
+      "ring_live_other": "Aides {count} fonctionnant",
+      "ring_helper_one": "Aide",
+      "ring_helper_other": "Aides"
+    },
+    "reach": {
+      "title": "Que peut faire {name}",
+      "off": "Jamais",
+      "suggest": "Je te demande d’abord",
+      "trial": "Essaie, avec défaire",
+      "full": "Est-ce que c’est tout seul ?"
+    },
+    "kinds": {
+      "memory": "Souvenirs",
+      "skill": "Skills",
+      "routine": "Routines",
+      "agent": "Agents",
+      "code": "Changements de code"
+    },
+    "noticed": {
+      "title": "Remarqué",
+      "hint": "Seulement ce que vous demandez vous-même compte.",
+      "empty": "Rien n’est encore répété.",
+      "empty_hint": "Continuez à travailler comme d’habitude. {name} compte tranquillement sur cet ordinateur.",
+      "once_one": "Demande {count} notée une fois jusqu’à présent.",
+      "once_other": "Demandes {count} notées une fois jusqu’à présent.",
+      "more": "Plus de répétitions de {count}",
+      "times": "Interrogé {count} fois",
+      "days_one": "le jour {count}",
+      "days_other": "les jours {count}",
+      "quote_open": "“",
+      "quote_close": "”",
+      "progress": "{count} des jours {total}",
+      "more_days_one": "{count} plus de jour pour aller",
+      "more_days_other": "{count} plus de jours pour aller",
+      "more_times_one": "{count} plus de temps pour aller",
+      "more_times_other": "{count} plus de fois pour aller",
+      "stage": {
+        "ready": "Prêt. {name} le regarde bientôt",
+        "proposed": "Voir la suggestion",
+        "direct": "{name} répond directement à cette question",
+        "declined": "Vous avez dit non.",
+        "served": "Une compétence fait déjà cela",
+        "nothing": "Rien ne vaut la construction.",
+        "ready_paused": "Attendez que vous repreniez."
+      }
+    },
+    "how": {
+      "title": "Comment ça marche",
+      "notice_title": "Il est signalé",
+      "notice_body": "Vous demandez la même chose à différents jours. {name} le compte, sur cet ordinateur.",
+      "suggest_title": "Il suggère",
+      "suggest_body": "Le plus petit helper qui convient : quelque chose à retenir, une compétence, une routine, un agent ou un changement de code.",
+      "try_title": "Essaie.",
+      "try_body": "Il fonctionne sur un essai marqué. Gardez-le, ou le défaire en un seul clic."
+    },
+    "suggested": {
+      "memory": "Mémoire suggérée",
+      "skill": "Compétence suggérée",
+      "routine": "routine suggérée",
+      "agent": "Agent suggéré",
+      "code": "Changement de code suggéré"
+    },
+    "based_on_one": "Basé sur la demande {count}",
+    "based_on_other": "Basé sur les requêtes {count}",
+    "details": "Détails",
+    "stop_footer": "Besoin de tout pour s’arrêter immédiatement ?",
+    "page": {
+      "subtitle": "Lorsque vous demandez à {name} la même chose encore et encore, il offre de configurer un petit assistant qui le fait pour vous.",
+      "learning_title": "Apprendre comment vous travaillez · jour {day} de {days}",
+      "learning_body": "Les suggestions peuvent apparaître à partir de {date}. Jusqu’à ce que {name} ne prenne que des notes.",
+      "learning_body_nodate": "Pour les premiers jours {days} {name} prend seulement des notes.",
+      "empty_title": "Rien ici encore.",
+      "empty_body": "Continuez à utiliser {name} comme d’habitude. Une fois que vous demandez la même chose sur {days} différents jours, une suggestion apparaît ici.",
+      "noticed_rule": "Une suggestion apparaît une fois que quelque chose est demandé sur {days} jours différents.",
+      "how_toggle": "Comment ça marche ?",
+      "pause_hint": "Rien de nouveau n’est remarqué ou construit. Vos aides continuent de travailler.",
+      "stop_hint": "Arrête tous les agents, la mission et la routine."
+    }
+  }
+}

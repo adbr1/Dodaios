@@ -98,4 +98,23 @@ LABELS = {
         "recording": "A gravar",  # i18n-allow: product UI
         "saving": "A guardar a gravação…",  # i18n-allow: product UI
     },
+    "fr": {
+        "title": "AppShots — Enregistrement d’écran",
+        "play": "Lire la vidéo",
+        "video": "Vidéo",
+        "save": "Enregistrer la vidéo",
+        "close": "Fermer",
+        "pin": "Garder à l’écran",
+        "saved": "Enregistré dans Téléchargements",
+        "failed": "L’opération a échoué",
+        "select": "Tracez une zone à enregistrer · Échap pour annuler",
+        "full": "Enregistrer tout l’écran",
+        "portal": "Choisissez un écran dans la fenêtre de partage du système.",
+        "preview": "Tracez une zone dans l’aperçu ou enregistrez tout l’écran partagé.",
+        "cancel": "Annuler",
+        "stop": "Arrêter et enregistrer",
+        "starting": "Démarrage de l’enregistrement…",
+        "recording": "Enregistrement en cours",
+        "saving": "Enregistrement de la vidéo…"
+    },  # i18n-allow: product UI
 }

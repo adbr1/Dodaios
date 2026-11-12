@@ -4173,6 +4173,10 @@
       "pt": {
         "label": "Português (Portugal)",
         "description": "所有标签和按钮都使用欧洲葡萄牙语。"
+      },
+      "fr": {
+        "label": "Français",
+        "description": "所有标签和按钮均使用法语（法国）。"
       }
     },
     "reply_options": {
@@ -4180,7 +4184,8 @@
       "en": "{name} answers in English.",
       "de": "{name} antwortet auf Deutsch.",
       "es": "{name} responde en español.",
-      "pt": "{name} responde em português."
+      "pt": "{name} responde em português.",
+      "fr": "{name} 使用法语回复。"
     },
     "stt_options": {
       "auto": "自动检测你说的语言。",
@@ -7916,7 +7921,9 @@
     "getting_ready": "正在准备",
     "tokens_hint": "输入 {input} 个新词元（另有 {cached} 个来自缓存）· 输出 {output} 个词元",
     "open_beside": "在侧边栏中显示",
-    "open_file_beside": "在侧边栏中显示 {file}"
+    "open_file_beside": "在侧边栏中显示 {file}",
+    "more_lines": "… 还有 {count} 行",
+    "message_from": "来自 {sender} 的消息"
   },
   "work_trace": {
     "tool_failed": "一个工具操作失败",
@@ -11622,5 +11629,15 @@
     "class_other": "近期出错",
     "finding_label": "健康检查",
     "open_keys": "打开 API 密钥"
+  },
+  "startup": {
+    "starting": "正在启动…",
+    "updating": "正在更新界面…",
+    "restoring": "正在恢复界面…",
+    "title": "界面没有加载出来。",
+    "why": "原因：",
+    "unknown": "没有报告原因。",
+    "hint": "当某个区域打开时崩溃，或在窗口打开期间界面被重新构建时，就会出现这种情况。",
+    "button": "重新加载"
   }
 }

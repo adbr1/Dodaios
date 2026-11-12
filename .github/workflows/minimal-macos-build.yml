@@ -59,6 +59,15 @@ jobs:
       - name: Test the macOS icon geometry
         run: python -m pytest -q tests/unit/packaging/test_macos_icon_geometry.py tests/unit/ui/test_platform_icon_surfaces.py
 
+      - name: Test French settings persistence and native localizations
+        run: python -m pytest -q tests/integration/test_ui_language_route.py tests/unit/ui/test_french_ui_locale.py tests/unit/packaging/test_macos_privacy_strings.py tests/unit/i18n
+
+      - name: Test French selection and Agents navigation
+        working-directory: dodaios/ui/web/frontend
+        run: |
+          npm ci
+          npm test -- src/i18n/fr-locale-parity.test.ts src/views/settings/FrenchLanguageSelection.test.tsx src/components/layout/Sidebar.test.tsx --maxWorkers=3
+
       - name: Build the DMG using the existing packaging script
         shell: bash
         run: |
@@ -67,6 +76,9 @@ jobs:
 
       - name: Verify the frozen app bundle
         run: python scripts/ci/check_frozen_macos_app.py --app dist/Dodaios.app
+
+      - name: Verify French dictionaries and Agents in the packaged frontend
+        run: python scripts/ci/check_french_frontend.py --app dist/Dodaios.app
 
       - name: Verify the DMG and record its checksum
         env:

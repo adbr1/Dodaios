@@ -46,6 +46,7 @@ _CARD_HINTS: dict[str, str] = {
     "es": "Clic para editar · Arrastra para compartir",  # i18n-allow: product UI string
     "zh": "点击编辑 · 拖动分享",  # i18n-allow: product UI string
     "pt": "Clica para editar · Arrasta para partilhar",  # i18n-allow: product UI string
+    "fr": "Cliquez pour modifier · Faites glisser pour partager",  # i18n-allow: product UI
 }
 
 

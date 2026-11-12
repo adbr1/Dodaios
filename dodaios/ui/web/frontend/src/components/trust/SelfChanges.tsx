@@ -1,3 +1,4 @@
+import { uiLocale } from "@/lib/boardInsights";
 import { useCallback, useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -153,7 +154,7 @@ export function SelfChanges() {
                       )}
                       <p className="m-0 text-xs text-muted-foreground">
                         {fill(t("trust.page.change_by"), { author: row.author, version: row.version })} ·{" "}
-                        {new Date(row.created_ms).toLocaleString()}
+                        {new Date(row.created_ms).toLocaleString(uiLocale())}
                       </p>
                       {row.state === "proposed" && (
                         <p className="m-0 text-xs text-foreground-secondary">

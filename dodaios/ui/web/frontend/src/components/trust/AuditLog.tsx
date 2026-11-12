@@ -1,3 +1,4 @@
+import { uiLocale } from "@/lib/boardInsights";
 import { useCallback, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { BrandedSelect } from "@/components/ui/select";
@@ -139,7 +140,7 @@ export function AuditLog() {
             <tbody>
               {rows.map((row) => (
                 <tr key={row.id} className="border-t border-border align-top" data-testid="audit-row">
-                  <td className="whitespace-nowrap py-2 pr-4 tabular-nums">{new Date(row.ts_ms).toLocaleString()}</td>
+                  <td className="whitespace-nowrap py-2 pr-4 tabular-nums">{new Date(row.ts_ms).toLocaleString(uiLocale())}</td>
                   <td className="py-2 pr-4">
                     {row.tool}
                     {row.action ? <span className="text-muted-foreground"> · {row.action}</span> : null}

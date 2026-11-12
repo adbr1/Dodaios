@@ -1,3 +1,4 @@
+import { uiLocale } from "@/lib/boardInsights";
 import { fill } from "@/i18n";
 
 /** Backend turn-failure codes the chat shows as a sentence, not a raw identifier. */
@@ -94,7 +95,7 @@ export function resetTimeLabel(iso: string, now: Date = new Date()): string | nu
   const at = new Date(iso);
   if (Number.isNaN(at.getTime())) return null;
   const sameDay = at.toDateString() === now.toDateString();
-  return at.toLocaleString(undefined, sameDay
+  return at.toLocaleString(uiLocale(), sameDay
     ? { hour: "2-digit", minute: "2-digit" }
     : { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
 }

@@ -1,3 +1,4 @@
+import { uiLocale } from "@/lib/boardInsights";
 import { useCallback, useEffect, useLayoutEffect, type ReactNode } from "react";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { MessageSquare, Mic, Plus, Trash2, AudioLines } from "lucide-react";
@@ -421,9 +422,9 @@ function formatTime(ms: number): string {
   const d = new Date(ms);
   const today = startOfDay(Date.now());
   if (startOfDay(ms) >= today) {
-    return d.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" });
+    return d.toLocaleTimeString(uiLocale(), { hour: "2-digit", minute: "2-digit" });
   }
-  return d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+  return d.toLocaleDateString(uiLocale(), { month: "short", day: "numeric" });
 }
 
 // ----------------------------------------------------------------------

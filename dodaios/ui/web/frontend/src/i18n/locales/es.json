@@ -4173,6 +4173,10 @@
       "pt": {
         "label": "Português (Portugal)",
         "description": "Portugués europeo para cada etiqueta y botón."
+      },
+      "fr": {
+        "label": "Français",
+        "description": "Usar francés (Francia) en todas las etiquetas y botones."
       }
     },
     "reply_options": {
@@ -4180,7 +4184,8 @@
       "en": "{name} responde en inglés.",
       "de": "{name} responde en alemán.",
       "es": "{name} responde en español.",
-      "pt": "{name} responde en portugués."
+      "pt": "{name} responde en portugués.",
+      "fr": "{name} responde en francés."
     },
     "stt_options": {
       "auto": "Detecta automáticamente el idioma que hablas.",
@@ -7916,7 +7921,9 @@
     "getting_ready": "Preparando",
     "tokens_hint": "Entrada {input} tokens nuevos ({cached} más reutilizados de la caché) · salida {output} tokens",
     "open_beside": "Mostrar en el panel lateral",
-    "open_file_beside": "Mostrar {file} en el panel lateral"
+    "open_file_beside": "Mostrar {file} en el panel lateral",
+    "more_lines": "… {count} líneas más",
+    "message_from": "Mensaje de {sender}"
   },
   "work_trace": {
     "tool_failed": "Falló una acción de herramienta",
@@ -11622,5 +11629,15 @@
     "class_other": "fallos recientes",
     "finding_label": "Comprobación de estado",
     "open_keys": "Abrir claves de API"
+  },
+  "startup": {
+    "starting": "Iniciando…",
+    "updating": "Actualizando la interfaz…",
+    "restoring": "Restaurando la interfaz…",
+    "title": "La interfaz no se cargó.",
+    "why": "Motivo: ",
+    "unknown": "No se informó ningún motivo.",
+    "hint": "Ocurre cuando una sección falla al abrirse o la interfaz se reconstruye con la ventana abierta.",
+    "button": "Recargar"
   }
 }

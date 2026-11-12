@@ -38,7 +38,7 @@ def _manager(reply_language: str) -> BrainManager:
 
 
 def test_normalize_accepts_known_languages() -> None:
-    for code in ("auto", "de", "en", "es", "pt"):
+    for code in ("auto", "de", "en", "es", "pt", "fr"):
         assert normalize_reply_language(code) == code
 
 
@@ -60,6 +60,7 @@ def test_directive_names_target_language() -> None:
     assert "German" in _manager("de")._reply_language_directive()
     assert "Spanish" in _manager("es")._reply_language_directive()
     assert "European Portuguese" in _manager("pt")._reply_language_directive()
+    assert "French" in _manager("fr")._reply_language_directive()
 
 
 def test_directive_is_mandatory_and_keeps_proper_nouns() -> None:
