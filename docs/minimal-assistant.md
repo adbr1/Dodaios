@@ -138,3 +138,13 @@ not Apple-notarized. The user has authorized committing and pushing this build b
 creation is currently blocked by the GitHub integration (HTTP 403, resource not
 accessible by integration). Pushing and running the remote build require the URL
 of a fork the user has created. No remote branch or DMG has been produced yet.
+
+
+### Runtime Dock override
+
+The running process previously replaced the bundle icon with a full-bleed PNG.
+`apply_macos_dock_icon()` now uses the shared `render_icon()` safe area before
+constructing the AppKit image from PNG bytes. On macOS, `webview.start()` receives
+no raw PNG override, so it cannot undo that normalization. Linux and Windows
+keep their existing icon paths. The runtime and packaging icon regression tests
+pass together (19 passed, one platform-specific skip on Linux).

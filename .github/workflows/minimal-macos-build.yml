@@ -7,6 +7,11 @@ on:
       - feat/minimal-assistant-macos-icon
     paths:
       - .github/workflows/minimal-macos-build.yml
+      - dodaios/**
+      - packaging/macos/**
+      - pyproject.toml
+      - tests/unit/packaging/test_macos_icon_geometry.py
+      - tests/unit/ui/test_platform_icon_surfaces.py
   workflow_dispatch: {}
 
 permissions:
@@ -14,7 +19,7 @@ permissions:
 
 concurrency:
   group: minimal-macos-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   macos:
@@ -52,7 +57,7 @@ jobs:
           python scripts/pip_install.py -e ".[desktop,desktop-macos,dev]"
 
       - name: Test the macOS icon geometry
-        run: python -m pytest -q tests/unit/packaging/test_macos_icon_geometry.py
+        run: python -m pytest -q tests/unit/packaging/test_macos_icon_geometry.py tests/unit/ui/test_platform_icon_surfaces.py
 
       - name: Build the DMG using the existing packaging script
         shell: bash

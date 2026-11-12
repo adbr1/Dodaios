@@ -6604,7 +6604,7 @@ class DesktopApp:
 
     @staticmethod
     def _native_window_icon() -> str | None:
-        """Icon path handed to ``webview.start(icon=...)`` — Linux/macOS only.
+        """Icon path handed to ``webview.start(icon=...)`` — Linux only.
 
         The WM_CLASS ↔ ``.desktop`` ``StartupWMClass`` handshake only feeds the
         dock/taskbar. The window's own TITLE BAR is drawn by the window manager
@@ -6615,12 +6615,15 @@ class DesktopApp:
         pywebview applies the file via ``set_icon_from_file`` +
         ``set_default_icon_from_file``, so detached windows inherit it too.
 
+        macOS uses ``apply_macos_dock_icon`` with its optical safe area. A raw
+        PNG here could overwrite it when pywebview starts.
+
         Windows is deliberately excluded: pywebview's WinForms backend would
         construct ``System.Drawing.Icon`` from the PNG (which throws), and the
         Win32 ``WM_SETICON`` poll in ``_start_icon_setter_thread`` already owns
         that surface with the multi-resolution ``.ico``.
         """
-        if sys.platform == "win32":
+        if sys.platform in {"win32", "darwin"}:
             return None
         try:
             from dodaios.assets import bundled_app_icon_png

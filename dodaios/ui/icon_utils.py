@@ -1813,14 +1813,17 @@ def apply_macos_dock_icon() -> bool:
     its own ``CFBundleIconFile``. For source/pip runs the supported override is
     ``NSApplication.setApplicationIconImage_``, set at runtime before the first
     window (pywebview's Cocoa backend uses the same shared NSApplication, so
-    the icon sticks). Uses the bundled PNG; AppKit (pyobjc, a pywebview macOS
-    dependency) is probed as a capability, so this is a quiet no-op on any
-    machine without it. Must run on the main thread. Never raises.
+    the icon sticks). Uses the bundled PNG with the same optical safe area
+    as the ICNS, so the runtime override cannot enlarge the Dock icon again.
+    AppKit (pyobjc, a pywebview macOS dependency) is probed as a capability,
+    so this is a quiet no-op on machines without it. Must run on the main
+    thread. Never raises.
     """
     if sys.platform != "darwin":
         return False
     try:
         from AppKit import NSApplication, NSImage  # type: ignore[import-not-found]
+        from Foundation import NSData  # type: ignore[import-not-found]
     except Exception as exc:  # noqa: BLE001 — no pyobjc → unbranded Dock, never a crash
         logger.debug("AppKit unavailable; Dock icon not set: {}", exc)
         return False
@@ -1830,7 +1833,19 @@ def apply_macos_dock_icon() -> bool:
         png = bundled_app_icon_png()
         if png is None or not png.is_file():
             return False
-        image = NSImage.alloc().initWithContentsOfFile_(str(png))
+        from io import BytesIO
+
+        from PIL import Image
+
+        from dodaios.setup.macos_icon import render_icon
+
+        # Load from bytes: AppKit may read a file lazily after a temporary file
+        # has gone away. The PNG used by other operating systems stays intact.
+        encoded = BytesIO()
+        with Image.open(png) as source:
+            render_icon(source, source.width).save(encoded, format="PNG")
+        data = encoded.getvalue()
+        image = NSImage.alloc().initWithData_(NSData.dataWithBytes_length_(data, len(data)))
         if image is None:
             return False
         NSApplication.sharedApplication().setApplicationIconImage_(image)

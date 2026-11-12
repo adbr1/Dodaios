@@ -1,6 +1,7 @@
 M = modified; D = deleted; A = added (changes relative to upstream base a0752a6b2)
 
 M	.github/workflows/desktop-installers.yml
+A	.github/workflows/minimal-macos-build.yml
 M	assets/icons/dodaios.icns
 A	docs/minimal-assistant-files.txt
 A	docs/minimal-assistant.md
@@ -11,6 +12,8 @@ D	dodaios/progression/service.py
 D	dodaios/progression/store.py
 M	dodaios/setup/macos_app_bundle.py
 A	dodaios/setup/macos_icon.py
+M	dodaios/ui/desktop_app.py
+M	dodaios/ui/icon_utils.py
 M	dodaios/ui/web/frontend/package-lock.json
 M	dodaios/ui/web/frontend/package.json
 D	dodaios/ui/web/frontend/src/assets/society/companions/accessories.glb
@@ -439,5 +442,6 @@ D	tests/unit/progression/test_frontend_parity.py
 D	tests/unit/progression/test_routes.py
 D	tests/unit/progression/test_rules.py
 D	tests/unit/progression/test_service.py
+M	tests/unit/ui/test_platform_icon_surfaces.py
 D	tests/unit/ui/test_society_figures_gate.py
 D	tests/unit/ui/web/test_society_figure_routes.py

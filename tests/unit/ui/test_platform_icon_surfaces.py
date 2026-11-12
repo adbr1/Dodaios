@@ -123,3 +123,58 @@ def test_desktop_app_hands_the_icon_to_webview_start() -> None:
 
     src = inspect.getsource(desktop_app.DesktopApp.run_window_only)
     assert "icon=self._native_window_icon()" in src
+
+
+def test_macos_runtime_icon_keeps_the_packaging_safe_area(monkeypatch, tmp_path: Path) -> None:
+    """The running Dock icon must not replace the inset ICNS with a full-bleed PNG."""
+    from io import BytesIO
+    from types import SimpleNamespace
+
+    from PIL import Image
+
+    import dodaios.assets as assets
+    from dodaios.setup.macos_icon import CONTENT_RATIO
+
+    source = tmp_path / "icon.png"
+    Image.new("RGBA", (256, 256), (20, 40, 60, 255)).save(source)
+    original = source.read_bytes()
+    applied = []
+
+    class NativeImage:
+        @classmethod
+        def alloc(cls):
+            return cls()
+
+        def initWithData_(self, data):
+            self.png = data
+            return self
+
+    class NativeData:
+        @staticmethod
+        def dataWithBytes_length_(data, length):
+            assert len(data) == length
+            return data
+
+    application = SimpleNamespace(setApplicationIconImage_=applied.append)
+    monkeypatch.setattr(sys, "platform", "darwin")
+    monkeypatch.setattr(assets, "bundled_app_icon_png", lambda: source)
+    monkeypatch.setitem(sys.modules, "AppKit", SimpleNamespace(
+        NSImage=NativeImage,
+        NSApplication=SimpleNamespace(sharedApplication=lambda: application),
+    ))
+    monkeypatch.setitem(sys.modules, "Foundation", SimpleNamespace(NSData=NativeData))
+    assert icon_utils.apply_macos_dock_icon() is True
+    with Image.open(BytesIO(applied[0].png)) as image:
+        content = round(256 * CONTENT_RATIO)
+        offset = (256 - content) // 2
+        assert image.getchannel("A").getbbox() == (
+            offset, offset, offset + content, offset + content
+        )
+    assert source.read_bytes() == original
+
+
+def test_macos_webview_does_not_replace_the_normalized_dock_icon(monkeypatch) -> None:
+    import dodaios.ui.desktop_app as desktop_app
+
+    monkeypatch.setattr(sys, "platform", "darwin")
+    assert desktop_app.DesktopApp._native_window_icon() is None
